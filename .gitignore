@@ -1,3 +1,5 @@
+*.db
+target/
 *.class
 .metadata
 bin/
