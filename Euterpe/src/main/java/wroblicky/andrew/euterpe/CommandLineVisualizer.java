@@ -4,13 +4,16 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
+import java.util.Properties;
 
-public class CommandLineVisualizer extends Visualizer {
+public final class CommandLineVisualizer extends Visualizer {
 	
-	private DatabaseManager databaseManager;
+	private final DatabaseManager databaseManager;
+	private final Properties properties;
 	
-	public CommandLineVisualizer(DatabaseManager databaseManager) {
+	public CommandLineVisualizer(DatabaseManager databaseManager, Properties properties) {
 		this.databaseManager = databaseManager;
+		this.properties = properties;
 	}
 	
 	private enum ActionType {
