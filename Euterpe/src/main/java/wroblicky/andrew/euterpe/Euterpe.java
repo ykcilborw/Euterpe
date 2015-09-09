@@ -1,21 +1,27 @@
 package wroblicky.andrew.euterpe;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
 public class Euterpe {
 	
-	private Euterpe() {
+	private final static String EUTERPE_CONF_LOCATION = "src/main/resources/euterpe.conf";
+	
+	Euterpe() {
 	}
 	
 	private void run(String visualizerArg, String modeArg) {
 		DatabaseManager databaseManager = null;
+		DataProvider dataProvider = null;
 		Visualizer visualizer = null;
 		Properties properties = this.getProperties();
 		if (modeArg.equals("test")) {
 			databaseManager = new SqliteDatabaseManager("test.db");
-			TestManager testManager = new TestManager(databaseManager);
+			dataProvider = new XmlDataProvider(databaseManager, properties);
+			TestManager testManager = new TestManager(databaseManager, dataProvider);
 			testManager.prepareDatabase();
 		} else { // prod
 			databaseManager = new SqliteDatabaseManager("euterpe.db");
@@ -37,12 +43,15 @@ public class Euterpe {
 	
 	public Properties getProperties() {
 		Properties properties = new Properties();
-		InputStream in = getClass().getResourceAsStream("/main/resources/euterpe.properties");
+	       System.out.println("Working Directory = " +
+	               System.getProperty("user.dir"));
+		File propertiesFile = new File(EUTERPE_CONF_LOCATION);
 		try {
+			InputStream in = new FileInputStream(propertiesFile);
 			properties.load(in);
 			in.close();
 		} catch (IOException e) {
-			// TODO
+			System.out.println("An exception occurred attempting to read " + EUTERPE_CONF_LOCATION);
 		}
 		return properties;
 	}

@@ -6,10 +6,12 @@ import java.util.List;
 public class TestManager {
 	
 	private DatabaseManager databaseManager;
+	private DataProvider dataProvider;
 	
 	
-	public TestManager(DatabaseManager databaseManager) {
+	public TestManager(DatabaseManager databaseManager, DataProvider dataProvider) {
 		this.databaseManager = databaseManager;
+		this.dataProvider = dataProvider;
 	}
 	
 	public void prepareDatabase() {
@@ -28,6 +30,7 @@ public class TestManager {
 		insertPlays();
 		insertSongPlayHistories();
 		insertArtistPlayHistories();
+		dataProvider.fetchAndInsertLatestData();
 	}
 	
 	public void insertArtists() {

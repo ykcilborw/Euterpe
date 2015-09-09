@@ -16,12 +16,7 @@ public abstract class DataProvider {
 		insertUpdateSet(findAddedData(properties));
 	}
 	
-	UpdateSet findAddedData(Properties properties) {
-		// load map of current songs to plays
-		// load current data into separate map
-		// use guava map difference for comparison
-		return null;
-	}
+	abstract UpdateSet findAddedData(Properties properties);
 	
 	boolean doesArtistExist(String artistName) {
 		if (databaseManager.getArtistByName(artistName) != null) {
@@ -43,25 +38,28 @@ public abstract class DataProvider {
 	}
 	
 	void insertUpdateSet(UpdateSet updateSet) {
-		// insert artists
-		for (Artist artist : updateSet.getArtists()) {
-			databaseManager.insertArtist(artist);
+		
+		if (updateSet != null) {
+			// insert artists
+			for (Artist artist : updateSet.getArtists()) {
+				databaseManager.insertArtist(artist);
+			}
+			
+			// insert songs
+			for (Song song : updateSet.getSongs()) {
+				databaseManager.insertSong(song);
+			}
+			
+			// insert plays
+			for (Play play : updateSet.getPlays()) {
+				databaseManager.insertPlay(play);
+			}
+			
+			// update all time play counts
+			// TODO
+			
+			// other charts can be generated on the fly
 		}
-		
-		// insert songs
-		for (Song song : updateSet.getSongs()) {
-			databaseManager.insertSong(song);
-		}
-		
-		// insert plays
-		for (Play play : updateSet.getPlays()) {
-			databaseManager.insertPlay(play);
-		}
-		
-		// update all time play counts
-		// TODO
-		
-		// other charts can be generated on the fly
 	}
 
 }
