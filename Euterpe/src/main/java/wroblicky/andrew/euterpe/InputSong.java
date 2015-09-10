@@ -1,29 +1,17 @@
 package wroblicky.andrew.euterpe;
 
-public class Song {
+
+public class InputSong {
 	
 	private long id;
 	private String name;
-	private Artist artist;
+	private String artist;
 	private String genre;
     private long dateAdded;
     private int numPlays;
     private long mostRecentPlayDate;
     
-    public Song(String name, Artist artist, long dateAdded) {
-    	this.name = name;
-    	this.artist = artist;
-    	this.dateAdded = dateAdded;
-    }
-    
-    public Song(long id, String name, Artist artist, long dateAdded) {
-    	this.id = id;
-    	this.name = name;
-    	this.artist = artist;
-    	this.dateAdded = dateAdded;
-    }
-    
-    public Song(String name, Artist artist, String genre, long dateAdded, int numPlays, long mostRecentPlayDate) {
+    public InputSong(String name, String artist, String genre, long dateAdded, int numPlays, long mostRecentPlayDate) {
     	this.name = name;
     	this.artist = artist;
     	this.dateAdded = dateAdded;
@@ -32,7 +20,7 @@ public class Song {
     	this.mostRecentPlayDate = mostRecentPlayDate;
     }
     
-    public Song(long id, String name, Artist artist, String genre, long dateAdded, int numPlays, long mostRecentPlayDate) {
+    public InputSong(long id, String name, String artist, String genre, long dateAdded, int numPlays, long mostRecentPlayDate) {
     	this.id = id;
     	this.name = name;
     	this.artist = artist;
@@ -58,11 +46,11 @@ public class Song {
 		this.name = name;
 	}
 	
-	public Artist getArtist() {
+	public String getArtist() {
 		return artist;
 	}
 	
-	public void setArtist(Artist artist) {
+	public void setArtist(String artist) {
 		this.artist = artist;
 	}
 	
@@ -85,5 +73,4 @@ public class Song {
 	public long getMostRecentPlayDate() {
 		return mostRecentPlayDate;
 	}
-
 }

@@ -3,13 +3,13 @@ package wroblicky.andrew.euterpe;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestManager {
+public class SqlTestManager {
 	
 	private DatabaseManager databaseManager;
 	private DataProvider dataProvider;
 	
 	
-	public TestManager(DatabaseManager databaseManager, DataProvider dataProvider) {
+	public SqlTestManager(DatabaseManager databaseManager, DataProvider dataProvider) {
 		this.databaseManager = databaseManager;
 		this.dataProvider = dataProvider;
 	}

@@ -23,8 +23,16 @@ import org.xml.sax.SAXException;
 
 public class XmlDataProvider extends DataProvider {
 	
+	private static final String NAME = "Name";
+	private static final String ARTIST = "Artist";
+	private static final String GENRE = "Genre";
+	private static final String DATE_ADDED = "Date Added";
+	private static final String PLAY_COUNT = "Play Count";
+	private static final String PLAY_DATE = "Play Date";
 	
-	private final Map<Song, Integer> songsToPlays;
+	private final Map<InputSong, Integer> songsToPlays;
+	
+	
 	
 	public XmlDataProvider(DatabaseManager databaseManager, Properties properties) {
 		super(databaseManager, properties);
@@ -32,11 +40,19 @@ public class XmlDataProvider extends DataProvider {
 	}
 	
 	public UpdateSet findAddedData(Properties properties) {
-		
 		UpdateSet updateSet = null;
-		fetchSongProperties(properties);
-
+		List<InputSong> songs = getSongs(properties);
 		return updateSet;
+	}
+	
+	static List<InputSong> getSongs(Properties properties) {
+		List<InputSong> songs = new ArrayList<InputSong>();
+		for (Map<String, String> songProp : fetchSongProperties(properties))  {
+			 songs.add(new InputSong(songProp.get(NAME), songProp.get(ARTIST), songProp.get(GENRE), 
+					 convertUtcToUnix(songProp.get(DATE_ADDED)),
+					Integer.valueOf(songProp.get(PLAY_COUNT)), Long.valueOf(songProp.get(PLAY_DATE))));
+		}
+		return songs;
 	}
 	
 	static List<Map<String, String>> fetchSongProperties(Properties properties) {
@@ -77,6 +93,10 @@ public class XmlDataProvider extends DataProvider {
 			}
 		}
 		return parsedSongs;
+	}
+	
+	private static long convertUtcToUnix(String utcTimestamp) {
+		return 0L;
 	}
 
 }
