@@ -23,7 +23,7 @@ import org.xml.sax.SAXException;
 
 import wroblicky.andrew.euterpe.InputSong;
 
-public class XmlDataProvider implements MusicLibraryProvider {
+public class MusicLibraryProviderImpl implements MusicLibraryProvider {
 	
 	private static final String NAME = "Name";
 	private static final String ARTIST = "Artist";

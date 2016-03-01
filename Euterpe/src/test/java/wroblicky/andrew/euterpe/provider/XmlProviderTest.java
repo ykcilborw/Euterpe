@@ -7,14 +7,14 @@ import java.util.Properties;
 import org.junit.Test;
 
 import wroblicky.andrew.euterpe.Euterpe;
-import wroblicky.andrew.euterpe.provider.XmlDataProvider;
+import wroblicky.andrew.euterpe.provider.MusicLibraryProviderImpl;
 
 public class XmlProviderTest {
 
 	@Test
 	public void testFetchSongProperties() {
 		Properties properties = new Euterpe().getProperties();
-		XmlDataProvider.fetchSongProperties(properties);
+		MusicLibraryProviderImpl.fetchSongProperties(properties);
 	}
 
 }

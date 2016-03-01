@@ -9,7 +9,7 @@ import wroblicky.andrew.euterpe.dao.DAOFactory;
 import wroblicky.andrew.euterpe.dao.SqliteDAOFactory;
 import wroblicky.andrew.euterpe.provider.DataLoader;
 import wroblicky.andrew.euterpe.provider.MusicLibraryProvider;
-import wroblicky.andrew.euterpe.provider.XmlDataProvider;
+import wroblicky.andrew.euterpe.provider.MusicLibraryProviderImpl;
 import wroblicky.andrew.euterpe.visualizer.CommandLineVisualizer;
 import wroblicky.andrew.euterpe.visualizer.Visualizer;
 
@@ -46,7 +46,7 @@ public class Euterpe {
 	public static void runTest(String visualizerArg, String modeArg,
 			Properties properties) {
 		DAOFactory daoFactory = new SqliteDAOFactory();
-		MusicLibraryProvider musicLibraryProvider = new XmlDataProvider();
+		MusicLibraryProvider musicLibraryProvider = new MusicLibraryProviderImpl();
 		DataLoader dataLoader = new DataLoader(musicLibraryProvider, daoFactory, properties);
 		switch (modeArg) {
 		case "sql_query_test":
