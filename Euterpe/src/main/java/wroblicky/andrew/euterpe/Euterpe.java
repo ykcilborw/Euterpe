@@ -7,7 +7,8 @@ import java.util.Properties;
 
 import wroblicky.andrew.euterpe.dao.DAOFactory;
 import wroblicky.andrew.euterpe.dao.SqliteDAOFactory;
-import wroblicky.andrew.euterpe.provider.DataProvider;
+import wroblicky.andrew.euterpe.provider.DataLoader;
+import wroblicky.andrew.euterpe.provider.MusicLibraryProvider;
 import wroblicky.andrew.euterpe.provider.XmlDataProvider;
 import wroblicky.andrew.euterpe.visualizer.CommandLineVisualizer;
 import wroblicky.andrew.euterpe.visualizer.Visualizer;
@@ -45,35 +46,35 @@ public class Euterpe {
 	public static void runTest(String visualizerArg, String modeArg,
 			Properties properties) {
 		DAOFactory daoFactory = new SqliteDAOFactory();
-		DataProvider dataProvider = new XmlDataProvider(daoFactory,
-				properties);
+		MusicLibraryProvider musicLibraryProvider = new XmlDataProvider();
+		DataLoader dataLoader = new DataLoader(musicLibraryProvider, daoFactory, properties);
 		switch (modeArg) {
 		case "sql_query_test":
-			handleSqlQueryTest(daoFactory, dataProvider);
+			handleSqlQueryTest(daoFactory, dataLoader);
 			break;
 		case "initial_load_test":
-			handleInitialDatabaseLoadTest(daoFactory, dataProvider);
+			handleInitialDatabaseLoadTest(daoFactory, dataLoader);
 			break;
 		case "repeated_load_test":
-			handleRepeatedLoadTest(daoFactory, dataProvider);
+			handleRepeatedLoadTest(daoFactory, dataLoader);
 			break;
 		}
 	}
 
 	public static void handleSqlQueryTest(DAOFactory daoFactory,
-			DataProvider dataProvider) {
+			DataLoader dataProvider) {
 		SqlTestManager testManager = new SqlTestManager(daoFactory,
 				dataProvider);
 		testManager.prepareDatabase();
 	}
 
 	public static void handleInitialDatabaseLoadTest(
-			DAOFactory daoFactory, DataProvider dataProvider) {
+			DAOFactory daoFactory, DataLoader dataProvider) {
 
 	}
 
 	public static void handleRepeatedLoadTest(DAOFactory daoFactory,
-			DataProvider dataProvider) {
+			DataLoader dataProvider) {
 
 	}
 

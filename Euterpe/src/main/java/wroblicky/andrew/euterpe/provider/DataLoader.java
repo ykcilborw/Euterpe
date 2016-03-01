@@ -11,14 +11,16 @@ import wroblicky.andrew.euterpe.dao.DAOFactory;
 import wroblicky.andrew.euterpe.dao.PlayDAO;
 import wroblicky.andrew.euterpe.dao.SongDAO;
 
-public abstract class DataProvider {
+public class DataLoader {
 	
-	private ArtistDAO artistDAO;
-	private SongDAO songDAO;
-	private PlayDAO playDAO;
-	private Properties properties;
+	private final MusicLibraryProvider musicLibraryProvider;
+	private final ArtistDAO artistDAO;
+	private final SongDAO songDAO;
+	private final PlayDAO playDAO;
+	private final Properties properties;
 	
-	DataProvider(DAOFactory daoFactory, Properties properties) {
+	public DataLoader(MusicLibraryProvider musicLibraryProvider, DAOFactory daoFactory, Properties properties) {
+		this.musicLibraryProvider = musicLibraryProvider;
 		this.artistDAO = daoFactory.getArtistDAO();
 		this.songDAO = daoFactory.getSongDAO();
 		this.playDAO = daoFactory.getPlayDAO();
@@ -29,20 +31,17 @@ public abstract class DataProvider {
 		insertUpdateSet(findAddedData(properties));
 	}
 	
-	abstract UpdateSet findAddedData(Properties properties);
+	public UpdateSet findAddedData(Properties properties) {
+		// TODO
+		return null;
+	}
 	
 	boolean doesArtistExist(String artistName) {
-		if (artistDAO.getArtistByName(artistName) != null) {
-			return true;
-		}
-		return false;
+		return artistDAO.getArtistByName(artistName) != null;
 	}
 	
 	boolean doesSongExist(Artist artist, String songName) {
-		if (songDAO.getSong(artist, songName) != null) {
-			return true;
-		}
-		return false;
+		return songDAO.getSong(artist, songName) != null;
 	}
 	
 	int getNewSongPlaysAmount(String songName, String artistName) {

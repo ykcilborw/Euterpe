@@ -7,17 +7,17 @@ import wroblicky.andrew.euterpe.dao.ArtistDAO;
 import wroblicky.andrew.euterpe.dao.DAOFactory;
 import wroblicky.andrew.euterpe.dao.PlayDAO;
 import wroblicky.andrew.euterpe.dao.SongDAO;
-import wroblicky.andrew.euterpe.provider.DataProvider;
+import wroblicky.andrew.euterpe.provider.DataLoader;
 
 public class SqlTestManager {
 	
 	private ArtistDAO artistDAO;
 	private SongDAO songDAO;
 	private PlayDAO playDAO;
-	private DataProvider dataProvider;
+	private DataLoader dataProvider;
 	
 	
-	public SqlTestManager(DAOFactory daoFactory, DataProvider dataProvider) {
+	public SqlTestManager(DAOFactory daoFactory, DataLoader dataProvider) {
 		this.artistDAO = daoFactory.getArtistDAO();
 		this.songDAO = daoFactory.getSongDAO();
 		this.playDAO = daoFactory.getPlayDAO();

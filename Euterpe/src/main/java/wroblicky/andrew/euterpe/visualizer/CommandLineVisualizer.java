@@ -15,7 +15,6 @@ import wroblicky.andrew.euterpe.TimeInterval;
 import wroblicky.andrew.euterpe.TimeScope;
 import wroblicky.andrew.euterpe.dao.ArtistDAO;
 import wroblicky.andrew.euterpe.dao.DAOFactory;
-import wroblicky.andrew.euterpe.dao.DatabaseManager;
 import wroblicky.andrew.euterpe.dao.PlayDAO;
 import wroblicky.andrew.euterpe.dao.SongDAO;
 

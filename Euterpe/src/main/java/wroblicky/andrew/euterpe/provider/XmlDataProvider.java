@@ -22,10 +22,8 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import wroblicky.andrew.euterpe.InputSong;
-import wroblicky.andrew.euterpe.UpdateSet;
-import wroblicky.andrew.euterpe.dao.DAOFactory;
 
-public class XmlDataProvider extends DataProvider {
+public class XmlDataProvider implements MusicLibraryProvider {
 	
 	private static final String NAME = "Name";
 	private static final String ARTIST = "Artist";
@@ -34,17 +32,9 @@ public class XmlDataProvider extends DataProvider {
 	private static final String PLAY_COUNT = "Play Count";
 	private static final String PLAY_DATE = "Play Date";
 	
-	private final Map<InputSong, Integer> songsToPlays;
-	
-	public XmlDataProvider(DAOFactory daoFactory, Properties properties) {
-		super(daoFactory, properties);
-		this.songsToPlays = new HashMap<>();
-	}
-	
-	public UpdateSet findAddedData(Properties properties) {
-		UpdateSet updateSet = null;
-		List<InputSong> songs = getSongs(properties);
-		return updateSet;
+	@Override
+	public MusicLibrary getMusicLibrary(Properties properties) {
+		return new MusicLibrary(getSongs(properties));
 	}
 	
 	static List<InputSong> getSongs(Properties properties) {
@@ -100,5 +90,4 @@ public class XmlDataProvider extends DataProvider {
 	private static long convertUtcToUnix(String utcTimestamp) {
 		return 0L;
 	}
-
 }
