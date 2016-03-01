@@ -1,10 +1,19 @@
-package wroblicky.andrew.euterpe;
+package wroblicky.andrew.euterpe.visualizer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Properties;
+
+import wroblicky.andrew.euterpe.Artist;
+import wroblicky.andrew.euterpe.Play;
+import wroblicky.andrew.euterpe.PlayHistory;
+import wroblicky.andrew.euterpe.Song;
+import wroblicky.andrew.euterpe.SongPlayHistory;
+import wroblicky.andrew.euterpe.TimeInterval;
+import wroblicky.andrew.euterpe.TimeScope;
+import wroblicky.andrew.euterpe.dao.DatabaseManager;
 
 public final class CommandLineVisualizer extends Visualizer {
 	

@@ -1,4 +1,4 @@
-package wroblicky.andrew.euterpe;
+package wroblicky.andrew.euterpe.visualizer;
 
 import java.util.List;
 

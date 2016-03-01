@@ -3,6 +3,9 @@ package wroblicky.andrew.euterpe;
 import java.util.ArrayList;
 import java.util.List;
 
+import wroblicky.andrew.euterpe.dao.DatabaseManager;
+import wroblicky.andrew.euterpe.provider.DataProvider;
+
 public class SqlTestManager {
 	
 	private DatabaseManager databaseManager;

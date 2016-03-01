@@ -6,6 +6,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import wroblicky.andrew.euterpe.dao.DatabaseManager;
+import wroblicky.andrew.euterpe.dao.SqliteDatabaseManager;
+import wroblicky.andrew.euterpe.provider.DataProvider;
+import wroblicky.andrew.euterpe.provider.XmlDataProvider;
+import wroblicky.andrew.euterpe.visualizer.CommandLineVisualizer;
+import wroblicky.andrew.euterpe.visualizer.Visualizer;
+
 public class Euterpe {
 
 	private final static String EUTERPE_CONF_LOCATION = "src/main/resources/euterpe.conf";

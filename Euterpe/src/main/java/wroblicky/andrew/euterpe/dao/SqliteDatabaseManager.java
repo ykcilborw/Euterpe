@@ -1,4 +1,4 @@
-package wroblicky.andrew.euterpe;
+package wroblicky.andrew.euterpe.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,6 +6,13 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import wroblicky.andrew.euterpe.Artist;
+import wroblicky.andrew.euterpe.Play;
+import wroblicky.andrew.euterpe.PlayHistory;
+import wroblicky.andrew.euterpe.Song;
+import wroblicky.andrew.euterpe.TimeInterval;
+import wroblicky.andrew.euterpe.TimeScope;
 
 public class SqliteDatabaseManager extends DatabaseManager {
 	

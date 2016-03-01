@@ -1,4 +1,4 @@
-package wroblicky.andrew.euterpe;
+package wroblicky.andrew.euterpe.provider;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,6 +20,10 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
+import wroblicky.andrew.euterpe.InputSong;
+import wroblicky.andrew.euterpe.UpdateSet;
+import wroblicky.andrew.euterpe.dao.DatabaseManager;
 
 public class XmlDataProvider extends DataProvider {
 	

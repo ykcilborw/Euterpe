@@ -1,6 +1,12 @@
-package wroblicky.andrew.euterpe;
+package wroblicky.andrew.euterpe.provider;
 
 import java.util.Properties;
+
+import wroblicky.andrew.euterpe.Artist;
+import wroblicky.andrew.euterpe.Play;
+import wroblicky.andrew.euterpe.Song;
+import wroblicky.andrew.euterpe.UpdateSet;
+import wroblicky.andrew.euterpe.dao.DatabaseManager;
 
 public abstract class DataProvider {
 	
