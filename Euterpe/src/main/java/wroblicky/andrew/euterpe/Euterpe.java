@@ -3,11 +3,10 @@ package wroblicky.andrew.euterpe;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Properties;
 
-import wroblicky.andrew.euterpe.dao.DatabaseManager;
-import wroblicky.andrew.euterpe.dao.SqliteDatabaseManager;
+import wroblicky.andrew.euterpe.dao.DAOFactory;
+import wroblicky.andrew.euterpe.dao.SqliteDAOFactory;
 import wroblicky.andrew.euterpe.provider.DataProvider;
 import wroblicky.andrew.euterpe.provider.XmlDataProvider;
 import wroblicky.andrew.euterpe.visualizer.CommandLineVisualizer;
@@ -35,45 +34,45 @@ public class Euterpe {
 	}
 
 	public static Visualizer getVisualizer(String visualizerArg,
-			DatabaseManager databaseManager, Properties properties) {
+			DAOFactory daoFactory, Properties properties) {
 		Visualizer visualizer = null;
 		if (visualizerArg.equals("terminal")) {
-			visualizer = new CommandLineVisualizer(databaseManager, properties);
+			visualizer = new CommandLineVisualizer(daoFactory, properties);
 		}
 		return visualizer;
 	}
 
 	public static void runTest(String visualizerArg, String modeArg,
 			Properties properties) {
-		DatabaseManager databaseManager = new SqliteDatabaseManager("test.db");
-		DataProvider dataProvider = new XmlDataProvider(databaseManager,
+		DAOFactory daoFactory = new SqliteDAOFactory();
+		DataProvider dataProvider = new XmlDataProvider(daoFactory,
 				properties);
 		switch (modeArg) {
 		case "sql_query_test":
-			handleSqlQueryTest(databaseManager, dataProvider);
+			handleSqlQueryTest(daoFactory, dataProvider);
 			break;
 		case "initial_load_test":
-			handleInitialDatabaseLoadTest(databaseManager, dataProvider);
+			handleInitialDatabaseLoadTest(daoFactory, dataProvider);
 			break;
 		case "repeated_load_test":
-			handleRepeatedLoadTest(databaseManager, dataProvider);
+			handleRepeatedLoadTest(daoFactory, dataProvider);
 			break;
 		}
 	}
 
-	public static void handleSqlQueryTest(DatabaseManager databaseManager,
+	public static void handleSqlQueryTest(DAOFactory daoFactory,
 			DataProvider dataProvider) {
-		SqlTestManager testManager = new SqlTestManager(databaseManager,
+		SqlTestManager testManager = new SqlTestManager(daoFactory,
 				dataProvider);
 		testManager.prepareDatabase();
 	}
 
 	public static void handleInitialDatabaseLoadTest(
-			DatabaseManager databaseManager, DataProvider dataProvider) {
+			DAOFactory daoFactory, DataProvider dataProvider) {
 
 	}
 
-	public static void handleRepeatedLoadTest(DatabaseManager databaseManager,
+	public static void handleRepeatedLoadTest(DAOFactory daoFactory,
 			DataProvider dataProvider) {
 
 	}

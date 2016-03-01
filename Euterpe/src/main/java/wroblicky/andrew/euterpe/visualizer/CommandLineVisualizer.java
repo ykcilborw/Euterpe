@@ -13,15 +13,23 @@ import wroblicky.andrew.euterpe.Song;
 import wroblicky.andrew.euterpe.SongPlayHistory;
 import wroblicky.andrew.euterpe.TimeInterval;
 import wroblicky.andrew.euterpe.TimeScope;
+import wroblicky.andrew.euterpe.dao.ArtistDAO;
+import wroblicky.andrew.euterpe.dao.DAOFactory;
 import wroblicky.andrew.euterpe.dao.DatabaseManager;
+import wroblicky.andrew.euterpe.dao.PlayDAO;
+import wroblicky.andrew.euterpe.dao.SongDAO;
 
 public final class CommandLineVisualizer extends Visualizer {
 	
-	private final DatabaseManager databaseManager;
+	private ArtistDAO artistDAO;
+	private SongDAO songDAO;
+	private PlayDAO playDAO;
 	private final Properties properties;
 	
-	public CommandLineVisualizer(DatabaseManager databaseManager, Properties properties) {
-		this.databaseManager = databaseManager;
+	public CommandLineVisualizer(DAOFactory daoFactory, Properties properties) {
+		this.artistDAO = daoFactory.getArtistDAO();
+		this.songDAO = daoFactory.getSongDAO();
+		this.playDAO = daoFactory.getPlayDAO();
 		this.properties = properties;
 	}
 	
@@ -79,7 +87,7 @@ public final class CommandLineVisualizer extends Visualizer {
 	
 	public String getSongRankings(TimeInterval timeInterval,
 			TimeScope timeScope) {
-		List<PlayHistory> playHistories = databaseManager.getSongRankings(timeInterval, timeScope);
+		List<PlayHistory> playHistories = songDAO.getSongRankings(timeInterval, timeScope);
 		StringBuilder toReturn = new StringBuilder();
 		for (PlayHistory history : playHistories) {
 			SongPlayHistory songHistory = (SongPlayHistory) history;
@@ -95,7 +103,7 @@ public final class CommandLineVisualizer extends Visualizer {
 
 	public String getArtistRankings(TimeInterval timeInterval,
 			TimeScope timeScope) {
-		List<PlayHistory> playHistories = databaseManager.getArtistRankings(timeInterval, timeScope);
+		List<PlayHistory> playHistories = artistDAO.getArtistRankings(timeInterval, timeScope);
 		StringBuilder toReturn = new StringBuilder();
 		for (PlayHistory history : playHistories) {
 			toReturn.append(history.getArtist());
@@ -107,7 +115,7 @@ public final class CommandLineVisualizer extends Visualizer {
 	}
 	
 	public String getPlays() {
-		List<Play> plays = databaseManager.getPlays();
+		List<Play> plays = playDAO.getPlays();
 		StringBuilder toReturn = new StringBuilder();
 		for (Play play : plays) {
 			toReturn.append(play.getSong().getName());
@@ -121,7 +129,7 @@ public final class CommandLineVisualizer extends Visualizer {
 	}
 
 	public String getSongs() {
-		List<Song> songs = databaseManager.getSongs();
+		List<Song> songs = songDAO.getSongs();
 		StringBuilder toReturn = new StringBuilder();
 		for (Song song : songs) {
 			toReturn.append(song.getID());
@@ -137,7 +145,7 @@ public final class CommandLineVisualizer extends Visualizer {
 	}
 
 	public String getArtists() {
-		List<Artist> artists = databaseManager.getArtists();
+		List<Artist> artists = artistDAO.getArtists();
 		StringBuilder toReturn = new StringBuilder();
 		for (Artist artist : artists) {
 			toReturn.append(artist.getID());

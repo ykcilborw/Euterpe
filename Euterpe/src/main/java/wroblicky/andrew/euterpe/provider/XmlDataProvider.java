@@ -23,7 +23,7 @@ import org.xml.sax.SAXException;
 
 import wroblicky.andrew.euterpe.InputSong;
 import wroblicky.andrew.euterpe.UpdateSet;
-import wroblicky.andrew.euterpe.dao.DatabaseManager;
+import wroblicky.andrew.euterpe.dao.DAOFactory;
 
 public class XmlDataProvider extends DataProvider {
 	
@@ -36,10 +36,8 @@ public class XmlDataProvider extends DataProvider {
 	
 	private final Map<InputSong, Integer> songsToPlays;
 	
-	
-	
-	public XmlDataProvider(DatabaseManager databaseManager, Properties properties) {
-		super(databaseManager, properties);
+	public XmlDataProvider(DAOFactory daoFactory, Properties properties) {
+		super(daoFactory, properties);
 		this.songsToPlays = new HashMap<>();
 	}
 	

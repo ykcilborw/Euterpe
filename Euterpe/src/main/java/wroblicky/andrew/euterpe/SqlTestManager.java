@@ -3,36 +3,43 @@ package wroblicky.andrew.euterpe;
 import java.util.ArrayList;
 import java.util.List;
 
-import wroblicky.andrew.euterpe.dao.DatabaseManager;
+import wroblicky.andrew.euterpe.dao.ArtistDAO;
+import wroblicky.andrew.euterpe.dao.DAOFactory;
+import wroblicky.andrew.euterpe.dao.PlayDAO;
+import wroblicky.andrew.euterpe.dao.SongDAO;
 import wroblicky.andrew.euterpe.provider.DataProvider;
 
 public class SqlTestManager {
 	
-	private DatabaseManager databaseManager;
+	private ArtistDAO artistDAO;
+	private SongDAO songDAO;
+	private PlayDAO playDAO;
 	private DataProvider dataProvider;
 	
 	
-	public SqlTestManager(DatabaseManager databaseManager, DataProvider dataProvider) {
-		this.databaseManager = databaseManager;
+	public SqlTestManager(DAOFactory daoFactory, DataProvider dataProvider) {
+		this.artistDAO = daoFactory.getArtistDAO();
+		this.songDAO = daoFactory.getSongDAO();
+		this.playDAO = daoFactory.getPlayDAO();
 		this.dataProvider = dataProvider;
 	}
 	
 	public void prepareDatabase() {
-		databaseManager.dropSongPlayHistoryTables();
-		databaseManager.dropArtistPlayHistoryTables();
-		databaseManager.dropPlays();
-		databaseManager.dropSongs();
-		databaseManager.dropArtists();
-		databaseManager.createArtistTable();
-		databaseManager.createSongTable();
-		databaseManager.createPlayTable();
-		databaseManager.createArtistPlayHistoryTables();
-		databaseManager.createSongPlayHistoryTables();
+		//databaseManager.dropSongPlayHistoryTables();
+		//databaseManager.dropArtistPlayHistoryTables();
+		playDAO.dropPlays();
+		songDAO.dropSongs();
+		artistDAO.dropArtists();
+		artistDAO.createArtistTable();
+		songDAO.createSongTable();
+		playDAO.createPlayTable();
+		//databaseManager.createArtistPlayHistoryTables();
+		//databaseManager.createSongPlayHistoryTables();
 		insertArtists();
 		insertSongs();
 		insertPlays();
-		insertSongPlayHistories();
-		insertArtistPlayHistories();
+		//insertSongPlayHistories();
+		//insertArtistPlayHistories();
 		dataProvider.fetchAndInsertLatestData();
 	}
 	
@@ -47,7 +54,7 @@ public class SqlTestManager {
 		artists.add(new Artist("Elastica"));
 		artists.add(new Artist("Echobelly"));
 		for (Artist artist : artists) {
-			databaseManager.insertArtist(artist);
+			artistDAO.insertArtist(artist);
 		}
 	}
 	
@@ -70,7 +77,7 @@ public class SqlTestManager {
 		songs.add(new Song("S.O.F.T.", new Artist("Elastica"), 1440980216));
 		songs.add(new Song("Dark Therapy", new Artist("Echobelly"), 1440980216));
 		for (Song song : songs) {
-			databaseManager.insertSong(song);
+			songDAO.insertSong(song);
 		}
 	}
 	

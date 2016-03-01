@@ -6,15 +6,22 @@ import wroblicky.andrew.euterpe.Artist;
 import wroblicky.andrew.euterpe.Play;
 import wroblicky.andrew.euterpe.Song;
 import wroblicky.andrew.euterpe.UpdateSet;
-import wroblicky.andrew.euterpe.dao.DatabaseManager;
+import wroblicky.andrew.euterpe.dao.ArtistDAO;
+import wroblicky.andrew.euterpe.dao.DAOFactory;
+import wroblicky.andrew.euterpe.dao.PlayDAO;
+import wroblicky.andrew.euterpe.dao.SongDAO;
 
 public abstract class DataProvider {
 	
-	private DatabaseManager databaseManager;
+	private ArtistDAO artistDAO;
+	private SongDAO songDAO;
+	private PlayDAO playDAO;
 	private Properties properties;
 	
-	DataProvider(DatabaseManager databaseManager, Properties properties) {
-		this.databaseManager = databaseManager;
+	DataProvider(DAOFactory daoFactory, Properties properties) {
+		this.artistDAO = daoFactory.getArtistDAO();
+		this.songDAO = daoFactory.getSongDAO();
+		this.playDAO = daoFactory.getPlayDAO();
 		this.properties = properties;
 	}
 	
@@ -25,14 +32,14 @@ public abstract class DataProvider {
 	abstract UpdateSet findAddedData(Properties properties);
 	
 	boolean doesArtistExist(String artistName) {
-		if (databaseManager.getArtistByName(artistName) != null) {
+		if (artistDAO.getArtistByName(artistName) != null) {
 			return true;
 		}
 		return false;
 	}
 	
 	boolean doesSongExist(Artist artist, String songName) {
-		if (databaseManager.getSong(artist, songName) != null) {
+		if (songDAO.getSong(artist, songName) != null) {
 			return true;
 		}
 		return false;
@@ -48,17 +55,17 @@ public abstract class DataProvider {
 		if (updateSet != null) {
 			// insert artists
 			for (Artist artist : updateSet.getArtists()) {
-				databaseManager.insertArtist(artist);
+				artistDAO.insertArtist(artist);
 			}
 			
 			// insert songs
 			for (Song song : updateSet.getSongs()) {
-				databaseManager.insertSong(song);
+				songDAO.insertSong(song);
 			}
 			
 			// insert plays
 			for (Play play : updateSet.getPlays()) {
-				databaseManager.insertPlay(play);
+				playDAO.insertPlay(play);
 			}
 			
 			// update all time play counts
