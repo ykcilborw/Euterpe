@@ -6,12 +6,12 @@ import wroblicky.andrew.euterpe.Play;
 
 public interface PlayDAO {
 	
-	public abstract List<Play> getPlays();
+	void createPlayTable();
 	
-	public abstract void insertPlay(Play play);
+	void insertPlay(Play play);
 	
-	public abstract void createPlayTable();
-
-	public abstract void dropPlays();
+	List<Play> getPlays();
+	
+	void dropPlays();
 
 }

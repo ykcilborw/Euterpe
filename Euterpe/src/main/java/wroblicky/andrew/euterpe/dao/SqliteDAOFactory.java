@@ -19,7 +19,11 @@ public class SqliteDAOFactory extends DAOFactory {
 	
 	public PlayDAO getPlayDAO() {
 		return new PlayDAOImpl();
-	}	
+	}
+	
+	public HistoricalChartDAO getHistoricalChartDAO() {
+		return new HistoricalChartDAOImpl();
+	}
 	
 	public static Connection createConnection() {
 		Connection connection = null;

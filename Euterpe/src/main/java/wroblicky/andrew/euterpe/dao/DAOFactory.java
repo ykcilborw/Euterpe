@@ -7,6 +7,8 @@ public abstract class DAOFactory {
 	public abstract SongDAO getSongDAO();
 
 	public abstract PlayDAO getPlayDAO();
+	
+	public abstract HistoricalChartDAO getHistoricalChartDAO();
 
 	public static DAOFactory getDAOFactory(DatabaseType whichFactory) {
 		switch (whichFactory) {

@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Properties;
 
 import wroblicky.andrew.euterpe.Artist;
+import wroblicky.andrew.euterpe.ChartCategory;
+import wroblicky.andrew.euterpe.HistoricalChart;
 import wroblicky.andrew.euterpe.Play;
 import wroblicky.andrew.euterpe.PlayHistory;
 import wroblicky.andrew.euterpe.Song;
@@ -15,6 +17,7 @@ import wroblicky.andrew.euterpe.TimeInterval;
 import wroblicky.andrew.euterpe.TimeScope;
 import wroblicky.andrew.euterpe.dao.ArtistDAO;
 import wroblicky.andrew.euterpe.dao.DAOFactory;
+import wroblicky.andrew.euterpe.dao.HistoricalChartDAO;
 import wroblicky.andrew.euterpe.dao.PlayDAO;
 import wroblicky.andrew.euterpe.dao.SongDAO;
 
@@ -23,12 +26,14 @@ public final class CommandLineVisualizer extends Visualizer {
 	private ArtistDAO artistDAO;
 	private SongDAO songDAO;
 	private PlayDAO playDAO;
+	private HistoricalChartDAO historicalChartDAO;
 	private final Properties properties;
 	
 	public CommandLineVisualizer(DAOFactory daoFactory, Properties properties) {
 		this.artistDAO = daoFactory.getArtistDAO();
 		this.songDAO = daoFactory.getSongDAO();
 		this.playDAO = daoFactory.getPlayDAO();
+		this.historicalChartDAO = daoFactory.getHistoricalChartDAO();
 		this.properties = properties;
 	}
 	
@@ -86,9 +91,9 @@ public final class CommandLineVisualizer extends Visualizer {
 	
 	public String getSongRankings(TimeInterval timeInterval,
 			TimeScope timeScope) {
-		List<PlayHistory> playHistories = songDAO.getSongRankings(timeInterval, timeScope);
+		HistoricalChart historicalChart = historicalChartDAO.getHistoricalChart(timeInterval, timeScope, ChartCategory.SONG);
 		StringBuilder toReturn = new StringBuilder();
-		for (PlayHistory history : playHistories) {
+		/*for (PlayHistory history : playHistories) {
 			SongPlayHistory songHistory = (SongPlayHistory) history;
 			toReturn.append(songHistory.getSongName());
 			toReturn.append(",");
@@ -96,20 +101,20 @@ public final class CommandLineVisualizer extends Visualizer {
 			toReturn.append(",");
 			toReturn.append(songHistory.getNumPlays());
 		    toReturn.append("\n");
-		}
+		}*/
 		return toReturn.toString();
 	}
 
 	public String getArtistRankings(TimeInterval timeInterval,
 			TimeScope timeScope) {
-		List<PlayHistory> playHistories = artistDAO.getArtistRankings(timeInterval, timeScope);
+		HistoricalChart historicalChart = historicalChartDAO.getHistoricalChart(timeInterval, timeScope, ChartCategory.SONG);
 		StringBuilder toReturn = new StringBuilder();
-		for (PlayHistory history : playHistories) {
+		/*for (PlayHistory history : playHistories) {
 			toReturn.append(history.getArtist());
 			toReturn.append(",");
 			toReturn.append(history.getNumPlays());
 		    toReturn.append("\n");
-		}
+		}*/
 		return toReturn.toString();
 	}
 	

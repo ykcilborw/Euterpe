@@ -1,6 +1,10 @@
-package wroblicky.andrew.euterpe;
+package wroblicky.andrew.euterpe.provider;
 
 import java.util.Set;
+
+import wroblicky.andrew.euterpe.Artist;
+import wroblicky.andrew.euterpe.Play;
+import wroblicky.andrew.euterpe.Song;
 
 public final class UpdateSet {
 	

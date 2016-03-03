@@ -8,24 +8,58 @@ import java.util.ArrayList;
 import java.util.List;
 
 import wroblicky.andrew.euterpe.Artist;
-import wroblicky.andrew.euterpe.PlayHistory;
-import wroblicky.andrew.euterpe.TimeInterval;
-import wroblicky.andrew.euterpe.TimeScope;
 
 public class ArtistDAOImpl implements ArtistDAO {
 	
 	private String databaseName;
+	
 
 	@Override
-	public List<PlayHistory> getArtistRankings(TimeInterval timeInterval,
-			TimeScope timeScope) {
-		return null;
+	public void createArtistTable() {
+		Connection c = null;
+		Statement stmt = null;
+		try {
+			c = DriverManager.getConnection("jdbc:sqlite:" + databaseName);
+			System.out.println("Opened database successfully");
+
+			stmt = c.createStatement();
+			String sql = "CREATE TABLE artists "
+					+ "(ID INTEGER PRIMARY KEY AUTOINCREMENT,"
+					+ " NAME           TEXT    NOT NULL)";
+			stmt.executeUpdate(sql);
+			stmt.close();
+			c.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.exit(0);
+		}
+		System.out.println("Artists table created successfully");
 	}
-
+	
 	@Override
-	public List<PlayHistory> getArtistRankings(TimeInterval timeInterval,
-			TimeScope timeScope, int start, int end) {
-		return null;
+	public void insertArtist(Artist artist) {
+	    Connection c = null;
+	    Statement stmt = null;
+	    try {
+	      c = DriverManager.getConnection("jdbc:sqlite:" + databaseName);
+	      c.setAutoCommit(false);
+	      System.out.println("Opened database successfully");
+
+			stmt = c.createStatement();
+			String sql = "INSERT INTO ARTISTS (NAME) "
+					+ "VALUES ('" + artist.getName() + "');";
+			stmt.executeUpdate(sql);
+
+	      stmt.close();
+	      c.commit();
+	      c.close();
+	    } catch ( Exception e ) {
+	      e.printStackTrace();
+	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	      System.exit(0);
+	    }
+	    System.out.println("Artist record created successfully");
 	}
 
 	@Override
@@ -87,54 +121,6 @@ public class ArtistDAOImpl implements ArtistDAO {
 	    }
 	    System.out.println("Operation done successfully");
 	    return artist;
-	}
-
-	@Override
-	public void insertArtist(Artist artist) {
-	    Connection c = null;
-	    Statement stmt = null;
-	    try {
-	      c = DriverManager.getConnection("jdbc:sqlite:" + databaseName);
-	      c.setAutoCommit(false);
-	      System.out.println("Opened database successfully");
-
-			stmt = c.createStatement();
-			String sql = "INSERT INTO ARTISTS (NAME) "
-					+ "VALUES ('" + artist.getName() + "');";
-			stmt.executeUpdate(sql);
-
-	      stmt.close();
-	      c.commit();
-	      c.close();
-	    } catch ( Exception e ) {
-	      e.printStackTrace();
-	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-	      System.exit(0);
-	    }
-	    System.out.println("Artist record created successfully");
-	}
-
-	@Override
-	public void createArtistTable() {
-		Connection c = null;
-		Statement stmt = null;
-		try {
-			c = DriverManager.getConnection("jdbc:sqlite:" + databaseName);
-			System.out.println("Opened database successfully");
-
-			stmt = c.createStatement();
-			String sql = "CREATE TABLE artists "
-					+ "(ID INTEGER PRIMARY KEY AUTOINCREMENT,"
-					+ " NAME           TEXT    NOT NULL)";
-			stmt.executeUpdate(sql);
-			stmt.close();
-			c.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.err.println(e.getClass().getName() + ": " + e.getMessage());
-			System.exit(0);
-		}
-		System.out.println("Artists table created successfully");
 	}
 
 	@Override

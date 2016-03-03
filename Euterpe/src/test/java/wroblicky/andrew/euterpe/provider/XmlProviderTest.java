@@ -13,8 +13,7 @@ public class XmlProviderTest {
 
 	@Test
 	public void testFetchSongProperties() {
-		Properties properties = new Euterpe().getProperties();
+		Properties properties = Euterpe.getProperties();
 		MusicLibraryProviderImpl.fetchSongProperties(properties);
 	}
-
 }

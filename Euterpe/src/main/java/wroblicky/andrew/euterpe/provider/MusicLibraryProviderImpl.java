@@ -21,8 +21,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import wroblicky.andrew.euterpe.InputSong;
-
 public class MusicLibraryProviderImpl implements MusicLibraryProvider {
 	
 	private static final String NAME = "Name";
@@ -87,7 +85,7 @@ public class MusicLibraryProviderImpl implements MusicLibraryProvider {
 		return parsedSongs;
 	}
 	
-	private static long convertUtcToUnix(String utcTimestamp) {
+	static long convertUtcToUnix(String utcTimestamp) {
 		return 0L;
 	}
 }
