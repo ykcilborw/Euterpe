@@ -4,6 +4,6 @@ import java.util.Properties;
 
 public interface MusicLibraryProvider {
 	
-	public MusicLibrary getMusicLibrary(Properties properties);
+	MusicLibrary getMusicLibrary(Properties properties);
 
 }

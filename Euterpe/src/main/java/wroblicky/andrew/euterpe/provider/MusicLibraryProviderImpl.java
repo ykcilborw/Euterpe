@@ -4,9 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -32,17 +34,27 @@ public class MusicLibraryProviderImpl implements MusicLibraryProvider {
 	
 	@Override
 	public MusicLibrary getMusicLibrary(Properties properties) {
-		return new MusicLibrary(getSongs(properties));
-	}
-	
-	static List<InputSong> getSongs(Properties properties) {
-		List<InputSong> songs = new ArrayList<InputSong>();
+		Set<String> artistNames = new HashSet<>();
+		Map<SongIdentificationKey, InputSong> songLookup = new HashMap<>();
+		Map<SongIdentificationKey,Integer> playCountLookup = new HashMap<>();
 		for (Map<String, String> songProp : fetchSongProperties(properties))  {
-			 songs.add(new InputSong(songProp.get(NAME), songProp.get(ARTIST), songProp.get(GENRE), 
-					 convertUtcToUnix(songProp.get(DATE_ADDED)),
-					Integer.valueOf(songProp.get(PLAY_COUNT)), Long.valueOf(songProp.get(PLAY_DATE))));
+			// artistNames
+			String artist = songProp.get(ARTIST);
+			artistNames.add(artist);
+			
+			// songLookup
+			String songName = songProp.get(NAME);
+			long dateAdded = convertUtcToUnix(songProp.get(DATE_ADDED));
+			SongIdentificationKey songIdentificationKey = new SongIdentificationKey(artist, songName, dateAdded);
+			int playCount = Integer.valueOf(songProp.get(PLAY_COUNT));
+			InputSong inputSong = new InputSong(songName, artist, songProp.get(GENRE), dateAdded, 
+					playCount, Long.valueOf(songProp.get(PLAY_DATE)));
+			songLookup.put(songIdentificationKey, inputSong);
+			
+			// playCountLookup
+			playCountLookup.put(songIdentificationKey, playCount);
 		}
-		return songs;
+		return new MusicLibrary(artistNames, songLookup, playCountLookup);
 	}
 	
 	static List<Map<String, String>> fetchSongProperties(Properties properties) {
