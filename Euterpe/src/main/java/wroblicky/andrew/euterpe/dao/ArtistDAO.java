@@ -6,14 +6,14 @@ import wroblicky.andrew.euterpe.Artist;
 
 public interface ArtistDAO {
 	
-	public void createArtistTable();
+	void createArtistTable();
 	
-	public void insertArtist(Artist artist);
+	void insertArtist(Artist artist);
 	
-	public List<Artist> getArtists();
+	List<Artist> getArtists();
 	
-	public Artist getArtistByName(String name);
+	Artist getArtistByName(String name);
 	
-	public void dropArtists();
+	void dropArtists();
 
 }

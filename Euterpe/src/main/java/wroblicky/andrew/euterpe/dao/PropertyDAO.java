@@ -6,18 +6,18 @@ import wroblicky.andrew.euterpe.Property;
 
 public interface PropertyDAO {
 	
-	public void createPropertyTable();
+	void createPropertyTable();
 	
-	public void insertProperty(Property property);
+	void insertProperty(Property property);
 	
-	public List<Property> getProperties();
+	List<Property> getProperties();
 	
-	public Property getProperty(String key);
+	Property getProperty(String key);
 	
-	public void updateProperty(String key, String value);
+	void updateProperty(String key, String value);
 	
-	public void deleteProperty(String key);
+	void deleteProperty(String key);
 	
-	public void dropProperties();
+	void dropProperties();
 
 }

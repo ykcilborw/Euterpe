@@ -7,14 +7,14 @@ import wroblicky.andrew.euterpe.TimeScope;
 
 public interface HistoricalChartDAO {
 	
-	public void createHistoricalChartTable(TimeInterval timeInterval, TimeScope timeScope, ChartCategory chartCategory);
+	void createHistoricalChartTable(TimeInterval timeInterval, TimeScope timeScope, ChartCategory chartCategory);
 	
-	public void insertHistoricalChart(HistoricalChart historicalChart);
+	void insertHistoricalChart(HistoricalChart historicalChart);
 	
-	public HistoricalChart getHistoricalChart(TimeInterval timeInterval, TimeScope timeScope, ChartCategory chartCategory);
+	HistoricalChart getHistoricalChart(TimeInterval timeInterval, TimeScope timeScope, ChartCategory chartCategory);
 	
-	public void deleteHistoricalChart(TimeInterval timeInterval, TimeScope timeScope, ChartCategory chartCategory);
+	void deleteHistoricalChart(TimeInterval timeInterval, TimeScope timeScope, ChartCategory chartCategory);
 	
-	public void dropHistoricalCharts();
+	void dropHistoricalCharts();
 
 }
