@@ -5,7 +5,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import wroblicky.andrew.euterpe.Artist;
 import wroblicky.andrew.euterpe.Song;
@@ -68,10 +70,10 @@ public class SongDAOImpl implements SongDAO {
 
 
 	@Override
-	public List<Song> getSongs() {
+	public Set<Song> getSongs() {
 		Connection c = null;
 	    Statement stmt = null;
-	    List<Song> songs = new ArrayList<Song>();
+	    Set<Song> songs = new HashSet<>();
 	    try {
 	      c = DriverManager.getConnection("jdbc:sqlite:" + databaseName);
 	      c.setAutoCommit(false);

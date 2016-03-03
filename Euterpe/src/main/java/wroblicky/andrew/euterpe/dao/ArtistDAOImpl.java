@@ -5,7 +5,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import wroblicky.andrew.euterpe.Artist;
 
@@ -38,7 +40,7 @@ public class ArtistDAOImpl implements ArtistDAO {
 	}
 	
 	@Override
-	public void insertArtist(Artist artist) {
+	public void insertArtist(String artist) {
 	    Connection c = null;
 	    Statement stmt = null;
 	    try {
@@ -48,7 +50,7 @@ public class ArtistDAOImpl implements ArtistDAO {
 
 			stmt = c.createStatement();
 			String sql = "INSERT INTO ARTISTS (NAME) "
-					+ "VALUES ('" + artist.getName() + "');";
+					+ "VALUES ('" + artist + "');";
 			stmt.executeUpdate(sql);
 
 	      stmt.close();
@@ -63,10 +65,10 @@ public class ArtistDAOImpl implements ArtistDAO {
 	}
 
 	@Override
-	public List<Artist> getArtists() {
+	public Set<Artist> getArtists() {
 		Connection c = null;
 		Statement stmt = null;
-		List<Artist> artists = new ArrayList<Artist>();
+		Set<Artist> artists = new HashSet<>();
 		try {
 			Class.forName("org.sqlite.JDBC");
 			c = DriverManager.getConnection("jdbc:sqlite:" + databaseName);

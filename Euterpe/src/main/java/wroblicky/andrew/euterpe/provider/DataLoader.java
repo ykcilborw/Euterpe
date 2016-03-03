@@ -1,6 +1,7 @@
 package wroblicky.andrew.euterpe.provider;
 
 import java.util.Properties;
+import java.util.Set;
 
 import wroblicky.andrew.euterpe.Artist;
 import wroblicky.andrew.euterpe.Play;
@@ -27,50 +28,31 @@ public class DataLoader {
 	}
 	
 	public void fetchAndInsertLatestData() {
-		insertUpdateSet(findAddedData(properties));
+		MusicLibrary musicLibrary = musicLibraryProvider.getMusicLibrary(properties);
+		
+		// check new artists
+		insertNewArtists(musicLibrary);
+		
+		// check new songs
+		insertNewSongs(musicLibrary);
+		
+		// check new plays
+		insertNewPlays(musicLibrary);
 	}
 	
-	public UpdateSet findAddedData(Properties properties) {
-		// TODO
+	private void insertNewArtists(MusicLibrary musicLibrary) {
+		Set<Artist> existingArtists = artistDAO.getArtists();
+	}
+	
+	private void insertNewSongs(MusicLibrary musicLibrary) {
+		Set<Song> existingArtists = songDAO.getSongs();
+	}
+	
+	private void insertNewPlays(MusicLibrary musicLibrary) {
+		Set<Song> existingArtists = songDAO.getSongs();
+	}
+	
+	private Set<SongIdentificationKey> generateSongIdentificationKeys(Set<Song> songs) {
 		return null;
 	}
-	
-	boolean doesArtistExist(String artistName) {
-		return artistDAO.getArtistByName(artistName) != null;
-	}
-	
-	boolean doesSongExist(Artist artist, String songName) {
-		return songDAO.getSong(artist, songName) != null;
-	}
-	
-	int getNewSongPlaysAmount(String songName, String artistName) {
-		// TODO
-		return 0;
-	}
-	
-	void insertUpdateSet(UpdateSet updateSet) {
-		
-		if (updateSet != null) {
-			// insert artists
-			for (Artist artist : updateSet.getArtists()) {
-				artistDAO.insertArtist(artist);
-			}
-			
-			// insert songs
-			for (Song song : updateSet.getSongs()) {
-				songDAO.insertSong(song);
-			}
-			
-			// insert plays
-			for (Play play : updateSet.getPlays()) {
-				playDAO.insertPlay(play);
-			}
-			
-			// update all time play counts
-			// TODO
-			
-			// other charts can be generated on the fly
-		}
-	}
-
 }

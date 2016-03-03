@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Properties;
+import java.util.Set;
 
 import wroblicky.andrew.euterpe.Artist;
 import wroblicky.andrew.euterpe.ChartCategory;
@@ -133,7 +134,7 @@ public final class CommandLineVisualizer extends Visualizer {
 	}
 
 	public String getSongs() {
-		List<Song> songs = songDAO.getSongs();
+		Set<Song> songs = songDAO.getSongs();
 		StringBuilder toReturn = new StringBuilder();
 		for (Song song : songs) {
 			toReturn.append(song.getID());
@@ -149,7 +150,7 @@ public final class CommandLineVisualizer extends Visualizer {
 	}
 
 	public String getArtists() {
-		List<Artist> artists = artistDAO.getArtists();
+		Set<Artist> artists = artistDAO.getArtists();
 		StringBuilder toReturn = new StringBuilder();
 		for (Artist artist : artists) {
 			toReturn.append(artist.getID());

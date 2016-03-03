@@ -1,6 +1,6 @@
 package wroblicky.andrew.euterpe.dao;
 
-import java.util.List;
+import java.util.Set;
 
 import wroblicky.andrew.euterpe.Artist;
 import wroblicky.andrew.euterpe.Song;
@@ -11,7 +11,7 @@ public interface SongDAO {
 	
 	void insertSong(Song song);
 	
-	List<Song> getSongs();
+	Set<Song> getSongs();
 	
 	Song getSong(Artist artist, String name);
 	

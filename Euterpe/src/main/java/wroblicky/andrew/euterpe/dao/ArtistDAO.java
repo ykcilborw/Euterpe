@@ -1,6 +1,6 @@
 package wroblicky.andrew.euterpe.dao;
 
-import java.util.List;
+import java.util.Set;
 
 import wroblicky.andrew.euterpe.Artist;
 
@@ -8,9 +8,9 @@ public interface ArtistDAO {
 	
 	void createArtistTable();
 	
-	void insertArtist(Artist artist);
+	void insertArtist(String artist);
 	
-	List<Artist> getArtists();
+	Set<Artist> getArtists();
 	
 	Artist getArtistByName(String name);
 	

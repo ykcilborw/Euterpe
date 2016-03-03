@@ -44,16 +44,16 @@ public class SqlTestManager {
 	}
 	
 	public void insertArtists() {
-		List<Artist> artists = new ArrayList<Artist>();
-		artists.add(new Artist("Muse"));
-		artists.add(new Artist("AFI"));
-		artists.add(new Artist("Flyleaf"));
-		artists.add(new Artist("Kaskade"));
-		artists.add(new Artist("Leftfield"));
-		artists.add(new Artist("Blur"));
-		artists.add(new Artist("Elastica"));
-		artists.add(new Artist("Echobelly"));
-		for (Artist artist : artists) {
+		List<String> artists = new ArrayList<>();
+		artists.add("Muse");
+		artists.add("AFI");
+		artists.add("Flyleaf");
+		artists.add("Kaskade");
+		artists.add("Leftfield");
+		artists.add("Blur");
+		artists.add("Elastica");
+		artists.add("Echobelly");
+		for (String artist : artists) {
 			artistDAO.insertArtist(artist);
 		}
 	}
