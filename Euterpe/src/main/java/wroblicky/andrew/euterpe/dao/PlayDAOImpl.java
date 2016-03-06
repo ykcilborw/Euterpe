@@ -1,11 +1,11 @@
 package wroblicky.andrew.euterpe.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import wroblicky.andrew.euterpe.Artist;
 import wroblicky.andrew.euterpe.Play;
@@ -13,18 +13,13 @@ import wroblicky.andrew.euterpe.Song;
 
 public class PlayDAOImpl implements PlayDAO {
 	
-	private String databaseName;
 	
 	@Override
 	public void createPlayTable() {
-		Connection c = null;
 		Statement stmt = null;
-		try {
-			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:" + databaseName);
-			System.out.println("Opened database successfully");
+		try (Connection connection = SqliteDAOFactory.createConnection()) {
 
-			stmt = c.createStatement();
+			stmt = connection.createStatement();
 			String sql = "CREATE TABLE plays "
 					+ "(ID INTEGER PRIMARY KEY AUTOINCREMENT,"
 					+ " SONG_ID INTEGER NOT NULL," + " ARTIST_ID INT NOT NULL,"
@@ -33,7 +28,6 @@ public class PlayDAOImpl implements PlayDAO {
 					+ " FOREIGN KEY(ARTIST_ID) REFERENCES ARTISTS(ID))";
 			stmt.executeUpdate(sql);
 			stmt.close();
-			c.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
@@ -44,14 +38,10 @@ public class PlayDAOImpl implements PlayDAO {
 	
 	@Override
 	public void insertPlay(Play play) {
-	    Connection c = null;
 	    Statement stmt = null;
-	    try {
-	      c = DriverManager.getConnection("jdbc:sqlite:" + databaseName);
-	      c.setAutoCommit(false);
-	      System.out.println("Opened database successfully");
+	    try (Connection connection = SqliteDAOFactory.createConnection()) {
 
-			stmt = c.createStatement();
+			stmt = connection.createStatement();
 			String sql = "INSERT INTO PLAYS (SONG_ID,ARTIST_ID,TIMESTAMP) "
 					+ "VALUES (" + play.getSong().getID() + ","
 					+ play.getArtist().getID() + "," + play.getTimestamp()
@@ -59,8 +49,7 @@ public class PlayDAOImpl implements PlayDAO {
 			stmt.executeUpdate(sql);
 
 	      stmt.close();
-	      c.commit();
-	      c.close();
+	      connection.commit();
 	    } catch ( Exception e ) {
 	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 	      System.exit(0);
@@ -70,15 +59,11 @@ public class PlayDAOImpl implements PlayDAO {
 
 	@Override
 	public List<Play> getPlays() {
-		Connection c = null;
 	    Statement stmt = null;
 	    List<Play> plays = new ArrayList<Play>();
-	    try {
-	      c = DriverManager.getConnection("jdbc:sqlite:" + databaseName);
-	      c.setAutoCommit(false);
-	      System.out.println("Opened database successfully");
+	    try (Connection connection = SqliteDAOFactory.createConnection()) {
 
-	      stmt = c.createStatement();
+	      stmt = connection.createStatement();
 	      ResultSet rs = stmt.executeQuery( "SELECT * FROM PLAYS JOIN SONGS, ARTISTS WHERE songs.id = plays.song_id and artists.id = plays.artist_id ;" );
 
 	      while ( rs.next() ) {
@@ -93,7 +78,6 @@ public class PlayDAOImpl implements PlayDAO {
 	      }
 	      rs.close();
 	      stmt.close();
-	      c.close();
 	    } catch ( Exception e ) {
 	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 	      System.exit(0);
@@ -104,22 +88,29 @@ public class PlayDAOImpl implements PlayDAO {
 
 	@Override
 	public void dropPlays() {
-		Connection c = null;
 		Statement stmt = null;
-		try {
-			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:" + databaseName);
-			System.out.println("Opened database successfully");
+		try (Connection connection = SqliteDAOFactory.createConnection()) {
 
-			stmt = c.createStatement();
+			stmt = connection.createStatement();
 			String sql = "DROP TABLE IF EXISTS plays; ";
 			stmt.executeUpdate(sql);
 			stmt.close();
-			c.close();
 		} catch (Exception e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			System.exit(0);
 		}
 		System.out.println("Play table dropped successfully");
+	}
+
+	@Override
+	public Set<Play> getPlays(Artist artist) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Set<Play> getPlays(Song song) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -1,37 +1,30 @@
 package wroblicky.andrew.euterpe.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import wroblicky.andrew.euterpe.Artist;
 
 public class ArtistDAOImpl implements ArtistDAO {
 	
-	private String databaseName;
-	
 
 	@Override
 	public void createArtistTable() {
-		Connection c = null;
-		Statement stmt = null;
-		try {
-			c = DriverManager.getConnection("jdbc:sqlite:" + databaseName);
-			System.out.println("Opened database successfully");
-
-			stmt = c.createStatement();
-			String sql = "CREATE TABLE artists "
-					+ "(ID INTEGER PRIMARY KEY AUTOINCREMENT,"
-					+ " NAME           TEXT    NOT NULL)";
-			stmt.executeUpdate(sql);
-			stmt.close();
-			c.close();
-		} catch (Exception e) {
+		String sql = "CREATE TABLE artists "
+				+ "(ID INTEGER PRIMARY KEY AUTOINCREMENT,"
+				+ " NAME           TEXT    NOT NULL)";
+		try (Connection connection = SqliteDAOFactory.createConnection()) {
+			try (PreparedStatement preparedStatement = connection
+					.prepareStatement(sql)) {
+				preparedStatement.executeUpdate(sql);
+			}
+			connection.commit();
+		} catch (SQLException e) {
 			e.printStackTrace();
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			System.exit(0);
@@ -41,41 +34,28 @@ public class ArtistDAOImpl implements ArtistDAO {
 	
 	@Override
 	public void insertArtist(String artist) {
-	    Connection c = null;
-	    Statement stmt = null;
-	    try {
-	      c = DriverManager.getConnection("jdbc:sqlite:" + databaseName);
-	      c.setAutoCommit(false);
-	      System.out.println("Opened database successfully");
-
-			stmt = c.createStatement();
-			String sql = "INSERT INTO ARTISTS (NAME) "
-					+ "VALUES ('" + artist + "');";
-			stmt.executeUpdate(sql);
-
-	      stmt.close();
-	      c.commit();
-	      c.close();
-	    } catch ( Exception e ) {
-	      e.printStackTrace();
-	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-	      System.exit(0);
-	    }
-	    System.out.println("Artist record created successfully");
+		String sql = "INSERT INTO ARTISTS (NAME) " + "VALUES ('?');";
+		try (Connection connection = SqliteDAOFactory.createConnection()) {
+			try (PreparedStatement preparedStatement = connection
+					.prepareStatement(sql)) {
+				preparedStatement.setString(1, artist);
+				preparedStatement.executeUpdate(sql);
+			}
+			connection.commit();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.exit(0);
+		}
+		System.out.println("Artist record created successfully");
 	}
 
 	@Override
 	public Set<Artist> getArtists() {
-		Connection c = null;
 		Statement stmt = null;
 		Set<Artist> artists = new HashSet<>();
-		try {
-			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:" + databaseName);
-			c.setAutoCommit(false);
-			System.out.println("Opened database successfully");
-
-			stmt = c.createStatement();
+		try (Connection connection = SqliteDAOFactory.createConnection()) {
+			stmt = connection.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM ARTISTS;");
 
 			while (rs.next()) {
@@ -85,8 +65,9 @@ public class ArtistDAOImpl implements ArtistDAO {
 			}
 			rs.close();
 			stmt.close();
-			c.close();
+			connection.close();
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			System.exit(0);
 		}
@@ -96,16 +77,11 @@ public class ArtistDAOImpl implements ArtistDAO {
 
 	@Override
 	public Artist getArtistByName(String name) {
-		Connection c = null;
 	    Statement stmt = null;
 	    Artist artist = null;
-	    try {
-	      Class.forName("org.sqlite.JDBC");
-	      c = DriverManager.getConnection("jdbc:sqlite:" + databaseName);
-	      c.setAutoCommit(false);
-	      System.out.println("Opened database successfully");
+	    try (Connection connection = SqliteDAOFactory.createConnection()) {
 
-	      stmt = c.createStatement();
+	      stmt = connection.createStatement();
 	      ResultSet rs = stmt.executeQuery( "SELECT * FROM ARTISTS where name = " + name + ";" );
 
 	      while ( rs.next() ) {
@@ -116,7 +92,7 @@ public class ArtistDAOImpl implements ArtistDAO {
 	      }
 	      rs.close();
 	      stmt.close();
-	      c.close();
+	      connection.close();
 	    } catch ( Exception e ) {
 	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 	      System.exit(0);
@@ -127,18 +103,13 @@ public class ArtistDAOImpl implements ArtistDAO {
 
 	@Override
 	public void dropArtists() {
-		Connection c = null;
 		Statement stmt = null;
-		try {
-			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:" + databaseName);
-			System.out.println("Opened database successfully");
-
-			stmt = c.createStatement();
+		try (Connection connection = SqliteDAOFactory.createConnection()) {
+			stmt = connection.createStatement();
 			String sql = "DROP TABLE IF EXISTS artists; ";
 			stmt.executeUpdate(sql);
 			stmt.close();
-			c.close();
+			connection.close();
 		} catch (Exception e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			System.exit(0);

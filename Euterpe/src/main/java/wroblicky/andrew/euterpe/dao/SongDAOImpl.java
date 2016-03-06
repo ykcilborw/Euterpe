@@ -1,12 +1,9 @@
 package wroblicky.andrew.euterpe.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import wroblicky.andrew.euterpe.Artist;
@@ -14,16 +11,12 @@ import wroblicky.andrew.euterpe.Song;
 
 public class SongDAOImpl implements SongDAO {
 	
-	private String databaseName;
 	
 	public void createSongTable() {
-		Connection c = null;
 		Statement stmt = null;
-		try {
-			c = DriverManager.getConnection("jdbc:sqlite:" + databaseName);
-			System.out.println("Opened database successfully");
+		try (Connection connection = SqliteDAOFactory.createConnection()) {
 
-			stmt = c.createStatement();
+			stmt = connection.createStatement();
 			String sql = "CREATE TABLE songs "
 					+ "(ID INTEGER PRIMARY KEY AUTOINCREMENT,"
 					+ " NAME           TEXT    NOT NULL,"
@@ -32,7 +25,6 @@ public class SongDAOImpl implements SongDAO {
 					+ " FOREIGN KEY(ARTIST_ID) REFERENCES ARTISTS(ID))";
 			stmt.executeUpdate(sql);
 			stmt.close();
-			c.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
@@ -44,42 +36,31 @@ public class SongDAOImpl implements SongDAO {
 	
 	@Override
 	public void insertSong(Song song) {
-	    Connection c = null;
-	    Statement stmt = null;
-	    try {
-	      c = DriverManager.getConnection("jdbc:sqlite:" + databaseName);
-	      c.setAutoCommit(false);
-	      System.out.println("Opened database successfully");
-
-			stmt = c.createStatement();
+		Statement stmt = null;
+		try (Connection connection = SqliteDAOFactory.createConnection()) {
+			stmt = connection.createStatement();
 			String sql = "INSERT INTO SONGS (NAME,ARTIST_ID,DATE_ADDED) "
 					+ "VALUES ('" + song.getName() + "',"
 					+ song.getArtist().getID() + "," + song.getDateAdded()
 					+ ");";
 			stmt.executeUpdate(sql);
 
-	      stmt.close();
-	      c.commit();
-	      c.close();
-	    } catch ( Exception e ) {
-	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-	      System.exit(0);
-	    }
-	    System.out.println("Song record created successfully");
+			stmt.close();
+			connection.commit();
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.exit(0);
+		}
+		System.out.println("Song record created successfully");
 	}
 
 
 	@Override
 	public Set<Song> getSongs() {
-		Connection c = null;
 	    Statement stmt = null;
 	    Set<Song> songs = new HashSet<>();
-	    try {
-	      c = DriverManager.getConnection("jdbc:sqlite:" + databaseName);
-	      c.setAutoCommit(false);
-	      System.out.println("Opened database successfully");
-
-	      stmt = c.createStatement();
+	    try (Connection connection = SqliteDAOFactory.createConnection()) {
+	      stmt = connection.createStatement();
 	      ResultSet rs = stmt.executeQuery( "SELECT * FROM SONGS JOIN ARTISTS WHERE songs.artist_id = artists.id ;" );
 
 	      while ( rs.next() ) {
@@ -93,8 +74,7 @@ public class SongDAOImpl implements SongDAO {
 	      }
 	      rs.close();
 	      stmt.close();
-	      c.close();
-	    } catch ( Exception e ) {
+	    } catch (Exception e) {
 	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 	      System.exit(0);
 	    }
@@ -109,18 +89,13 @@ public class SongDAOImpl implements SongDAO {
 
 	@Override
 	public void dropSongs() {
-		Connection c = null;
 		Statement stmt = null;
-		try {
-			Class.forName("org.sqlite.JDBC");
-			c = DriverManager.getConnection("jdbc:sqlite:" + databaseName);
-			System.out.println("Opened database successfully");
-
-			stmt = c.createStatement();
+		try (Connection connection = SqliteDAOFactory.createConnection()) {
+			stmt = connection.createStatement();
 			String sql = "DROP TABLE IF EXISTS songs; ";
 			stmt.executeUpdate(sql);
 			stmt.close();
-			c.close();
+			connection.close();
 		} catch (Exception e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			System.exit(0);

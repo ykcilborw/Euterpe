@@ -2,6 +2,7 @@ package wroblicky.andrew.euterpe.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class SqliteDAOFactory extends DAOFactory {
 	
@@ -25,17 +26,17 @@ public class SqliteDAOFactory extends DAOFactory {
 		return new HistoricalChartDAOImpl();
 	}
 	
-	public static Connection createConnection() {
+	public static Connection createConnection() throws SQLException {
 		Connection connection = null;
-	    try {
-		      Class.forName(DRIVER);
-		      connection = DriverManager.getConnection("jdbc:sqlite:" + DBNAME);
-		      connection.setAutoCommit(false);
-		      System.out.println("Opened database successfully");
-	    } catch (Exception e) {
-		      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-		      System.exit(0);
+		try {
+			Class.forName(DRIVER);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			System.exit(0);
 		}
-	    return connection;
+		connection = DriverManager.getConnection("jdbc:sqlite:" + DBNAME);
+		connection.setAutoCommit(false);
+		System.out.println("Opened database successfully");
+		return connection;
 	}
 }

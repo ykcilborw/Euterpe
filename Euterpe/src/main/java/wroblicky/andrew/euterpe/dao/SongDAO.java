@@ -4,6 +4,7 @@ import java.util.Set;
 
 import wroblicky.andrew.euterpe.Artist;
 import wroblicky.andrew.euterpe.Song;
+import wroblicky.andrew.euterpe.provider.InputSong;
 
 public interface SongDAO {
 	

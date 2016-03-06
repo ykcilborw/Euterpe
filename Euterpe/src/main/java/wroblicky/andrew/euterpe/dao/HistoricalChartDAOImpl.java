@@ -11,6 +11,8 @@ public class HistoricalChartDAOImpl implements HistoricalChartDAO {
 	public void createHistoricalChartTable(TimeInterval timeInterval,
 			TimeScope timeScope, ChartCategory chartCategory) {
 		// TODO Auto-generated method stub
+		// columns: object_id, num_plays, last_interval_plays
+		// future projections and heating up calculated in business logic layer
 		
 	}
 
