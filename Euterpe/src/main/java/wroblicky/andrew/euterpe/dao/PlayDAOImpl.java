@@ -113,4 +113,10 @@ public class PlayDAOImpl implements PlayDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void insertPlay(int songId, long timestamp) {
+		// TODO Auto-generated method stub
+		
+	}
 }

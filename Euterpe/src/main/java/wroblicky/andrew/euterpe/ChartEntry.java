@@ -1,5 +1,11 @@
 package wroblicky.andrew.euterpe;
 
-public class ChartEntry {
+public interface ChartEntry {
+	
+	ChartCategory getChartCategory();
+	
+	String getID();
 
+	int getNumPlays();
+	
 }

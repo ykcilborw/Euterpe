@@ -2,7 +2,7 @@ package wroblicky.andrew.euterpe;
 
 public class Song {
 	
-	private long id;
+	private int id;
 	private String name;
 	private Artist artist;
 	private String genre;
@@ -16,7 +16,7 @@ public class Song {
     	this.dateAdded = dateAdded;
     }
     
-    public Song(long id, String name, Artist artist, long dateAdded) {
+    public Song(int id, String name, Artist artist, long dateAdded) {
     	this.id = id;
     	this.name = name;
     	this.artist = artist;
@@ -32,7 +32,7 @@ public class Song {
     	this.mostRecentPlayDate = mostRecentPlayDate;
     }
     
-    public Song(long id, String name, Artist artist, String genre, long dateAdded, int numPlays, long mostRecentPlayDate) {
+    public Song(int id, String name, Artist artist, String genre, long dateAdded, int numPlays, long mostRecentPlayDate) {
     	this.id = id;
     	this.name = name;
     	this.artist = artist;
@@ -42,11 +42,11 @@ public class Song {
     	this.mostRecentPlayDate = mostRecentPlayDate;
     }
     
-	public long getID() {
+	public int getID() {
 		return id;
 	}
 	
-	public void setID(long id) {
+	public void setID(int id) {
 		this.id = id;
 	}
 	

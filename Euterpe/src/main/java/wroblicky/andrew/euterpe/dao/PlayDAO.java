@@ -11,6 +11,8 @@ public interface PlayDAO {
 	
 	void createPlayTable();
 	
+	void insertPlay(int songId, long timestamp);
+	
 	void insertPlay(Play play);
 	
 	List<Play> getPlays();

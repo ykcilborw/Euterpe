@@ -8,6 +8,7 @@ import java.util.Set;
 
 import wroblicky.andrew.euterpe.Artist;
 import wroblicky.andrew.euterpe.Song;
+import wroblicky.andrew.euterpe.provider.SongIdentificationKey;
 
 public class SongDAOImpl implements SongDAO {
 	
@@ -86,6 +87,11 @@ public class SongDAOImpl implements SongDAO {
 	public Song getSong(Artist artist, String name) {
 		return null;
 	}
+	
+	@Override
+	public Song getSong(String id) {
+		return null;
+	}
 
 	@Override
 	public void dropSongs() {
@@ -101,6 +107,12 @@ public class SongDAOImpl implements SongDAO {
 			System.exit(0);
 		}
 		System.out.println("Song table dropped successfully");
+	}
+
+	@Override
+	public Song getSong(SongIdentificationKey key) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

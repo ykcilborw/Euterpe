@@ -3,7 +3,6 @@ package wroblicky.andrew.euterpe.provider;
 
 public class InputSong {
 	
-	private long id;
 	private String name;
 	private String artist;
 	private String genre;
@@ -19,24 +18,6 @@ public class InputSong {
     	this.genre = genre;
     	this.mostRecentPlayDate = mostRecentPlayDate;
     }
-    
-    public InputSong(long id, String name, String artist, String genre, long dateAdded, int numPlays, long mostRecentPlayDate) {
-    	this.id = id;
-    	this.name = name;
-    	this.artist = artist;
-    	this.dateAdded = dateAdded;
-    	this.numPlays = numPlays;
-    	this.genre = genre;
-    	this.mostRecentPlayDate = mostRecentPlayDate;
-    }
-    
-	public long getID() {
-		return id;
-	}
-	
-	public void setID(long id) {
-		this.id = id;
-	}
 	
 	public String getName() {
 		return name;

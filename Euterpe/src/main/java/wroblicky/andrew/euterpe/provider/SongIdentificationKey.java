@@ -6,7 +6,7 @@ public class SongIdentificationKey {
 	private final String songName;
 	private final long dateAdded;
 
-	SongIdentificationKey(String artist, String songName, long dateAdded) {
+	public SongIdentificationKey(String artist, String songName, long dateAdded) {
 		this.artist = artist;
 		this.songName = songName;
 		this.dateAdded = dateAdded;

@@ -4,7 +4,7 @@ import java.util.Set;
 
 import wroblicky.andrew.euterpe.Artist;
 import wroblicky.andrew.euterpe.Song;
-import wroblicky.andrew.euterpe.provider.InputSong;
+import wroblicky.andrew.euterpe.provider.SongIdentificationKey;
 
 public interface SongDAO {
 	
@@ -14,7 +14,11 @@ public interface SongDAO {
 	
 	Set<Song> getSongs();
 	
+	Song getSong(SongIdentificationKey key);
+	
 	Song getSong(Artist artist, String name);
+	
+	Song getSong(String id);
 	
 	void dropSongs();
 
