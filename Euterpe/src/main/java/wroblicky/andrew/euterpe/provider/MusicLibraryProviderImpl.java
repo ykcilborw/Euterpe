@@ -40,7 +40,7 @@ public class MusicLibraryProviderImpl implements MusicLibraryProvider {
 	private static final String GENRE = "Genre";
 	private static final String DATE_ADDED = "Date Added";
 	private static final String PLAY_COUNT = "Play Count";
-	private static final String PLAY_DATE = "Play Date";
+	private static final String PLAY_DATE = "Play Date UTC";
 	private static final String PERSISTENT_ID = "Persistent ID";
 	
 	@Override
@@ -58,8 +58,9 @@ public class MusicLibraryProviderImpl implements MusicLibraryProvider {
 			long dateAdded = convertUtcToUnix(songProp.get(DATE_ADDED));
 			String persistentID = songProp.get(PERSISTENT_ID);
 			int playCount = Integer.valueOf(songProp.get(PLAY_COUNT));
+			long playDate = convertUtcToUnix(songProp.get(PLAY_DATE));
 			InputSong inputSong = new InputSong(songName, artist, songProp.get(GENRE), dateAdded, 
-					playCount, Long.valueOf(songProp.get(PLAY_DATE)), persistentID);
+					playCount, playDate, persistentID);
 			songLookup.put(persistentID, inputSong);
 			
 			// playCountLookup
@@ -109,6 +110,9 @@ public class MusicLibraryProviderImpl implements MusicLibraryProvider {
 	}
 	
 	static long convertUtcToUnix(String utcTimestamp) {
+		if (utcTimestamp == null) {
+			return 0;
+		}
 		try {
 			String year = utcTimestamp.substring(0, 4);
 			String month = utcTimestamp.substring(5, 7);

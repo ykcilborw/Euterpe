@@ -23,19 +23,43 @@ public class MusicLibraryProviderImplTest {
 		artistNames.add("Thirty Seconds to Mars");
 		artistNames.add("AFI");
 
-		Map<SongIdentificationKey, InputSong> songLookup = new HashMap<>();
-		SongIdentificationKey tenYearsSongIdentificationKey = new SongIdentificationKey(
-				"10 Years", "Wasteland",
+		Map<String, InputSong> songLookup = new HashMap<>();
+		songLookup.put("6F5599FDEF814467", new InputSong(
+				"Wasteland", "10 Years", "Rock", 
 				MusicLibraryProviderImpl
-						.convertUtcToUnix("2014-10-16T06:47:00Z"));
-		SongIdentificationKey thirtySecondsSongIdentificationKey = new SongIdentificationKey(
-				"30 Seconds to Mars", "From Yesterday",
+						.convertUtcToUnix("2010-04-19T04:50:21Z"), 6, MusicLibraryProviderImpl
+						.convertUtcToUnix("2014-10-16T06:47:00Z"), "6F5599FDEF814467"));
+		songLookup.put("722C81D08E82F310", new InputSong(
+				"From Yesterday", "Thirty Seconds to Mars", "Alternative", 
 				MusicLibraryProviderImpl
-						.convertUtcToUnix("2014-10-16T06:47:00Z"));
+						.convertUtcToUnix("2010-04-19T04:50:21Z"), 3,
+						0, "722C81D08E82F310"));
+		songLookup.put("F2C5F5E2EFC1D3D9", new InputSong(
+				"Medicate", "AFI", "Alternative", 
+				MusicLibraryProviderImpl
+						.convertUtcToUnix("2010-04-19T04:50:22Z"), 3, 0, "F2C5F5E2EFC1D3D9"));
+		
+		Map<String, Integer> playCountLookup = new HashMap<>();
+		playCountLookup.put("6F5599FDEF814467", 6);
+		playCountLookup.put("722C81D08E82F310", 3);
+		playCountLookup.put("F2C5F5E2EFC1D3D9", 3);
 
-		// MusicLibrary expectedMusicLibrary = new MusicLibrary();
-		// MusicLibrary musicLibrary =
-		// MusicLibraryProviderImpl.getMusicLibrary(properties);
+		MusicLibraryProviderImpl musicLibraryProvider = new MusicLibraryProviderImpl();
+		MusicLibrary musicLibrary = musicLibraryProvider.getMusicLibrary(properties);
+		assertEquals(artistNames, musicLibrary.getArtistNames());
+		assertEquals(playCountLookup, musicLibrary.getPlayCountLookup());
+		assertEquals(songLookup.keySet(), musicLibrary.getSongLookup().keySet());
+		for (String key : songLookup.keySet()) {
+			InputSong expected = songLookup.get(key);
+			InputSong actual = musicLibrary.getSongLookup().get(key);
+			assertEquals(expected.getArtist(), actual.getArtist());
+			assertEquals(expected.getDateAdded(), actual.getDateAdded());
+			assertEquals(expected.getGenre(), actual.getGenre());
+			assertEquals(expected.getMostRecentPlayDate(), actual.getMostRecentPlayDate());
+			assertEquals(expected.getName(), actual.getName());
+			assertEquals(expected.getNumPlays(), actual.getNumPlays());
+			assertEquals(expected.getPersistentID(), actual.getPersistentID());
+		}
 	}
 
 	@Test
