@@ -76,7 +76,7 @@ public class ArtistDAOImpl implements ArtistDAO {
 	}
 
 	@Override
-	public Artist getArtistByName(String name) {
+	public Artist getArtist(String name) {
 	    Statement stmt = null;
 	    Artist artist = null;
 	    try (Connection connection = SqliteDAOFactory.createConnection()) {

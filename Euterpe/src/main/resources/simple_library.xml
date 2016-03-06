@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Major Version</key><integer>1</integer>
+	<key>Minor Version</key><integer>1</integer>
+	<key>Date</key><date>2015-04-16T07:07:36Z</date>
+	<key>Application Version</key><string>12.1.2.27</string>
+	<key>Features</key><integer>5</integer>
+	<key>Show Content Ratings</key><true/>
+	<key>Music Folder</key><string>file:///Users/Andrew/Music/iTunes/iTunes%20Media/</string>
+	<key>Library Persistent ID</key><string>5193DAFE72210207</string>
+	<key>Tracks</key>
+	<dict>
+		<key>1055</key>
+		<dict>
+			<key>Track ID</key><integer>1055</integer>
+			<key>Name</key><string>Wasteland</string>
+			<key>Artist</key><string>10 Years</string>
+			<key>Album Artist</key><string>10 Years</string>
+			<key>Composer</key><string>Brian Vodinh &#38; Jesse Hasek</string>
+			<key>Album</key><string>The Autumn Effect (Bonus Track Version)</string>
+			<key>Genre</key><string>Rock</string>
+			<key>Kind</key><string>Protected AAC audio file</string>
+			<key>Size</key><integer>3793484</integer>
+			<key>Total Time</key><integer>229960</integer>
+			<key>Disc Number</key><integer>1</integer>
+			<key>Disc Count</key><integer>1</integer>
+			<key>Track Number</key><integer>5</integer>
+			<key>Track Count</key><integer>14</integer>
+			<key>Year</key><integer>2005</integer>
+			<key>Date Modified</key><date>2014-07-06T21:15:37Z</date>
+			<key>Date Added</key><date>2010-04-19T04:50:21Z</date>
+			<key>Bit Rate</key><integer>128</integer>
+			<key>Sample Rate</key><integer>44100</integer>
+			<key>Play Count</key><integer>6</integer>
+			<key>Play Date</key><integer>3496261620</integer>
+			<key>Play Date UTC</key><date>2014-10-16T06:47:00Z</date>
+			<key>Release Date</key><date>2005-08-16T07:00:00Z</date>
+			<key>Artwork Count</key><integer>1</integer>
+			<key>Sort Album</key><string>Autumn Effect (Bonus Track Version)</string>
+			<key>Sort Artist</key><string>10 Years</string>
+			<key>Sort Name</key><string>Wasteland</string>
+			<key>Persistent ID</key><string>6F5599FDEF814467</string>
+			<key>Track Type</key><string>File</string>
+			<key>Protected</key><true/>
+			<key>Purchased</key><true/>
+			<key>Location</key><string>file://localhost/Users/Andrew/Desktop/Old%20Da/Music/iTunes/iTunes%20Music/10%20Years/The%20Autumn%20Effect%20(Bonus%20Track%20Version)/05%20Wasteland.m4p</string>
+			<key>File Folder Count</key><integer>8</integer>
+			<key>Library Folder Count</key><integer>3</integer>
+		</dict>
+		<key>1057</key>
+		<dict>
+			<key>Track ID</key><integer>1057</integer>
+			<key>Name</key><string>From Yesterday</string>
+			<key>Artist</key><string>Thirty Seconds to Mars</string>
+			<key>Album Artist</key><string>Thirty Seconds to Mars</string>
+			<key>Album</key><string>A Beautiful Lie</string>
+			<key>Genre</key><string>Alternative</string>
+			<key>Kind</key><string>Purchased AAC audio file</string>
+			<key>Size</key><integer>8522179</integer>
+			<key>Total Time</key><integer>247373</integer>
+			<key>Disc Number</key><integer>1</integer>
+			<key>Disc Count</key><integer>1</integer>
+			<key>Track Number</key><integer>7</integer>
+			<key>Track Count</key><integer>12</integer>
+			<key>Year</key><integer>2005</integer>
+			<key>Date Modified</key><date>2014-07-06T21:15:45Z</date>
+			<key>Date Added</key><date>2010-04-19T04:50:21Z</date>
+			<key>Bit Rate</key><integer>256</integer>
+			<key>Sample Rate</key><integer>44100</integer>
+			<key>Play Count</key><integer>3</integer>
+			<key>Release Date</key><date>2005-08-30T07:00:00Z</date>
+			<key>Artwork Count</key><integer>1</integer>
+			<key>Sort Album</key><string>Beautiful Lie</string>
+			<key>Sort Artist</key><string>Thirty Seconds to Mars</string>
+			<key>Sort Name</key><string>From Yesterday</string>
+			<key>Persistent ID</key><string>722C81D08E82F310</string>
+			<key>Track Type</key><string>File</string>
+			<key>Purchased</key><true/>
+			<key>Location</key><string>file://localhost/Users/Andrew/Desktop/Old%20Da/Music/iTunes/iTunes%20Music/30%20Seconds%20to%20Mars/A%20Beautiful%20Lie/07%20From%20Yesterday.m4a</string>
+			<key>File Folder Count</key><integer>8</integer>
+			<key>Library Folder Count</key><integer>3</integer>
+		</dict>
+		<key>878</key>
+		<dict>
+			<key>Track ID</key><integer>878</integer>
+			<key>Name</key><string>Medicate</string>
+			<key>Artist</key><string>AFI</string>
+			<key>Album Artist</key><string>AFI</string>
+			<key>Composer</key><string>AFI</string>
+			<key>Album</key><string>Crash Love (Expanded Edition)</string>
+			<key>Genre</key><string>Alternative</string>
+			<key>Kind</key><string>Purchased AAC audio file</string>
+			<key>Size</key><integer>9511275</integer>
+			<key>Total Time</key><integer>260713</integer>
+			<key>Disc Number</key><integer>1</integer>
+			<key>Disc Count</key><integer>1</integer>
+			<key>Track Number</key><integer>7</integer>
+			<key>Track Count</key><integer>18</integer>
+			<key>Year</key><integer>2009</integer>
+			<key>Date Modified</key><date>2009-10-01T06:03:21Z</date>
+			<key>Date Added</key><date>2010-04-19T04:50:22Z</date>
+			<key>Bit Rate</key><integer>256</integer>
+			<key>Sample Rate</key><integer>44100</integer>
+			<key>Play Count</key><integer>3</integer>
+			<key>Release Date</key><date>2009-09-29T07:00:00Z</date>
+			<key>Artwork Count</key><integer>1</integer>
+			<key>Persistent ID</key><string>F2C5F5E2EFC1D3D9</string>
+			<key>Track Type</key><string>File</string>
+			<key>Purchased</key><true/>
+			<key>Location</key><string>file://localhost/C:/Users/Andrew/Desktop/Old%20Da/Music/iTunes/iTunes%20Music/AFI/Crash%20Love%20(Expanded%20Edition)/07%20Medicate.m4a</string>
+			<key>File Folder Count</key><integer>-1</integer>
+			<key>Library Folder Count</key><integer>-1</integer>
+		</dict>
+	</dict>
+</dict>
+</plist>

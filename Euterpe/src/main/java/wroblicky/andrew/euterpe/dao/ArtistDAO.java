@@ -12,7 +12,7 @@ public interface ArtistDAO {
 	
 	Set<Artist> getArtists();
 	
-	Artist getArtistByName(String name);
+	Artist getArtist(String name);
 	
 	void dropArtists();
 

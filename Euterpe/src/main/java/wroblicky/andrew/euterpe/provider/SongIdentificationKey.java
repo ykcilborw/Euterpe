@@ -1,5 +1,6 @@
 package wroblicky.andrew.euterpe.provider;
 
+@Deprecated
 public class SongIdentificationKey {
 
 	private final String artist;

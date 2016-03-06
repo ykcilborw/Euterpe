@@ -83,36 +83,36 @@ public class SqlTestManager {
 	
 	public void insertPlays() {
 		List<Play> plays = new ArrayList<Play>();
-		plays.add(new Play(new Song(1, "Time Is Running Out", new Artist("Muse"), 1440990716), new Artist("Muse"), 1440990716));
-		plays.add(new Play(new Song(1, "Time Is Running Out", new Artist("Muse"), 1440990716), new Artist("Muse"), 1440990717));
-		plays.add(new Play(new Song(1, "Time Is Running Out", new Artist("Muse"), 1440990716), new Artist("Muse"), 1440990718));
-		plays.add(new Play(new Song(1, "Time Is Running Out", new Artist("Muse"), 1440990716), new Artist("Muse"), 1440990719));
-		plays.add(new Play(new Song(1, "Time Is Running Out", new Artist("Muse"), 1440990716), new Artist("Muse"), 1440990720));
-		plays.add(new Play(new Song(1, "Time Is Running Out", new Artist("Muse"), 1440990716), new Artist("Muse"), 1440990721));
-		plays.add(new Play(new Song(1, "Time Is Running Out", new Artist("Muse"), 1440990716), new Artist("Muse"), 1440990722));
-		plays.add(new Play(new Song(1, "Time Is Running Out", new Artist("Muse"), 1440990716), new Artist("Muse"), 1440990723));
-		plays.add(new Play(new Song(1, "Knights of Cydonia", new Artist("Muse"), 1440990716), new Artist("Muse"), 1440990716));
-		plays.add(new Play(new Song(1, "Knights of Cydonia", new Artist("Muse"), 1440990716), new Artist("Muse"), 1440990716));
-		plays.add(new Play(new Song(1, "Knights of Cydonia", new Artist("Muse"), 1440990716), new Artist("Muse"), 1440990716));
-		plays.add(new Play(new Song(1, "Knights of Cydonia", new Artist("Muse"), 1440990716), new Artist("Muse"), 1440990716));
-		plays.add(new Play(new Song(1, "Uprising", new Artist("Muse"), 1440990716), new Artist("Muse"), 1440990716));
-		plays.add(new Play(new Song(1, "Uprising", new Artist("Muse"), 1440990716), new Artist("Muse"), 1440990716));
-		plays.add(new Play(new Song(1, "Hysteria", new Artist("Muse"), 1440990716), new Artist("Muse"), 1440990716));
-		plays.add(new Play(new Song(1, "Miss Murder", new Artist("AFI"), 1440990716), new Artist("AFI"), 1440990716));
-		plays.add(new Play(new Song(1, "Miss Murder", new Artist("AFI"), 1440990716), new Artist("AFI"), 1440990716));
-		plays.add(new Play(new Song(1, "Silver and Cold", new Artist("AFI"), 1440990716), new Artist("AFI"), 1440990716));
-		plays.add(new Play(new Song(1, "Medicate", new Artist("AFI"), 1440990716), new Artist("AFI"), 1440990716));
-		plays.add(new Play(new Song(1, "All Around Me", new Artist("Flyleaf"), 1440990716), new Artist("Flyleaf"), 1440990716));
-		plays.add(new Play(new Song(1, "All Around Me", new Artist("Flyleaf"), 1440990716), new Artist("Flyleaf"), 1440990716));
-		plays.add(new Play(new Song(1, "All Around Me", new Artist("Flyleaf"), 1440990716), new Artist("Flyleaf"), 1440990716));
-		plays.add(new Play(new Song(1, "All Around Me", new Artist("Flyleaf"), 1440990716), new Artist("Flyleaf"), 1440990716));
-		plays.add(new Play(new Song(1, "All Around Me", new Artist("Flyleaf"), 1440990716), new Artist("Flyleaf"), 1440990716));
-		plays.add(new Play(new Song(1, "All Around Me", new Artist("Flyleaf"), 1440990716), new Artist("Flyleaf"), 1440990716));
-		plays.add(new Play(new Song(1, "All Around Me", new Artist("Flyleaf"), 1440990716), new Artist("Flyleaf"), 1440990716));
-		plays.add(new Play(new Song(1, "All Around Me", new Artist("Flyleaf"), 1440990716), new Artist("Flyleaf"), 1440990716));
-		plays.add(new Play(new Song(1, "All Around Me", new Artist("Flyleaf"), 1440990716), new Artist("Flyleaf"), 1440990716));
-		plays.add(new Play(new Song(1, "All Around Me", new Artist("Flyleaf"), 1440990716), new Artist("Flyleaf"), 1440990716));
-		plays.add(new Play(new Song(1, "All Around Me", new Artist("Flyleaf"), 1440990716), new Artist("Flyleaf"), 1440990716));
+		plays.add(new Play(new Song(1, "Time Is Running Out", new Artist("Muse"), 1440990716), 1440990716));
+		plays.add(new Play(new Song(1, "Time Is Running Out", new Artist("Muse"), 1440990716), 1440990717));
+		plays.add(new Play(new Song(1, "Time Is Running Out", new Artist("Muse"), 1440990716), 1440990718));
+		plays.add(new Play(new Song(1, "Time Is Running Out", new Artist("Muse"), 1440990716), 1440990719));
+		plays.add(new Play(new Song(1, "Time Is Running Out", new Artist("Muse"), 1440990716), 1440990720));
+		plays.add(new Play(new Song(1, "Time Is Running Out", new Artist("Muse"), 1440990716), 1440990721));
+		plays.add(new Play(new Song(1, "Time Is Running Out", new Artist("Muse"), 1440990716), 1440990722));
+		plays.add(new Play(new Song(1, "Time Is Running Out", new Artist("Muse"), 1440990716), 1440990723));
+		plays.add(new Play(new Song(1, "Knights of Cydonia", new Artist("Muse"), 1440990716), 1440990716));
+		plays.add(new Play(new Song(1, "Knights of Cydonia", new Artist("Muse"), 1440990716), 1440990716));
+		plays.add(new Play(new Song(1, "Knights of Cydonia", new Artist("Muse"), 1440990716), 1440990716));
+		plays.add(new Play(new Song(1, "Knights of Cydonia", new Artist("Muse"), 1440990716), 1440990716));
+		plays.add(new Play(new Song(1, "Uprising", new Artist("Muse"), 1440990716), 1440990716));
+		plays.add(new Play(new Song(1, "Uprising", new Artist("Muse"), 1440990716), 1440990716));
+		plays.add(new Play(new Song(1, "Hysteria", new Artist("Muse"), 1440990716), 1440990716));
+		plays.add(new Play(new Song(1, "Miss Murder", new Artist("AFI"), 1440990716), 1440990716));
+		plays.add(new Play(new Song(1, "Miss Murder", new Artist("AFI"), 1440990716), 1440990716));
+		plays.add(new Play(new Song(1, "Silver and Cold", new Artist("AFI"), 1440990716), 1440990716));
+		plays.add(new Play(new Song(1, "Medicate", new Artist("AFI"), 1440990716), 1440990716));
+		plays.add(new Play(new Song(1, "All Around Me", new Artist("Flyleaf"), 1440990716), 1440990716));
+		plays.add(new Play(new Song(1, "All Around Me", new Artist("Flyleaf"), 1440990716), 1440990716));
+		plays.add(new Play(new Song(1, "All Around Me", new Artist("Flyleaf"), 1440990716), 1440990716));
+		plays.add(new Play(new Song(1, "All Around Me", new Artist("Flyleaf"), 1440990716), 1440990716));
+		plays.add(new Play(new Song(1, "All Around Me", new Artist("Flyleaf"), 1440990716), 1440990716));
+		plays.add(new Play(new Song(1, "All Around Me", new Artist("Flyleaf"), 1440990716), 1440990716));
+		plays.add(new Play(new Song(1, "All Around Me", new Artist("Flyleaf"), 1440990716), 1440990716));
+		plays.add(new Play(new Song(1, "All Around Me", new Artist("Flyleaf"), 1440990716), 1440990716));
+		plays.add(new Play(new Song(1, "All Around Me", new Artist("Flyleaf"), 1440990716), 1440990716));
+		plays.add(new Play(new Song(1, "All Around Me", new Artist("Flyleaf"), 1440990716), 1440990716));
+		plays.add(new Play(new Song(1, "All Around Me", new Artist("Flyleaf"), 1440990716), 1440990716));
 	}
 	
 	public void insertSongPlayHistories() {

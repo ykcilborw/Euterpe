@@ -2,6 +2,9 @@ package wroblicky.andrew.euterpe.provider;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -9,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+import java.util.TimeZone;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -25,18 +29,25 @@ import org.xml.sax.SAXException;
 
 public class MusicLibraryProviderImpl implements MusicLibraryProvider {
 	
+	private static DateFormat dfm = new SimpleDateFormat("yyyyMMddHHmmss");
+	
+	static {
+		dfm.setTimeZone(TimeZone.getTimeZone("GMT-0"));
+	}
+	
 	private static final String NAME = "Name";
 	private static final String ARTIST = "Artist";
 	private static final String GENRE = "Genre";
 	private static final String DATE_ADDED = "Date Added";
 	private static final String PLAY_COUNT = "Play Count";
 	private static final String PLAY_DATE = "Play Date";
+	private static final String PERSISTENT_ID = "Persistent ID";
 	
 	@Override
 	public MusicLibrary getMusicLibrary(Properties properties) {
 		Set<String> artistNames = new HashSet<>();
-		Map<SongIdentificationKey, InputSong> songLookup = new HashMap<>();
-		Map<SongIdentificationKey,Integer> playCountLookup = new HashMap<>();
+		Map<String, InputSong> songLookup = new HashMap<>();
+		Map<String,Integer> playCountLookup = new HashMap<>();
 		for (Map<String, String> songProp : fetchSongProperties(properties))  {
 			// artistNames
 			String artist = songProp.get(ARTIST);
@@ -45,14 +56,14 @@ public class MusicLibraryProviderImpl implements MusicLibraryProvider {
 			// songLookup
 			String songName = songProp.get(NAME);
 			long dateAdded = convertUtcToUnix(songProp.get(DATE_ADDED));
-			SongIdentificationKey songIdentificationKey = new SongIdentificationKey(artist, songName, dateAdded);
+			String persistentID = songProp.get(PERSISTENT_ID);
 			int playCount = Integer.valueOf(songProp.get(PLAY_COUNT));
 			InputSong inputSong = new InputSong(songName, artist, songProp.get(GENRE), dateAdded, 
-					playCount, Long.valueOf(songProp.get(PLAY_DATE)));
-			songLookup.put(songIdentificationKey, inputSong);
+					playCount, Long.valueOf(songProp.get(PLAY_DATE)), persistentID);
+			songLookup.put(persistentID, inputSong);
 			
 			// playCountLookup
-			playCountLookup.put(songIdentificationKey, playCount);
+			playCountLookup.put(persistentID, playCount);
 		}
 		return new MusicLibrary(artistNames, songLookup, playCountLookup);
 	}
@@ -98,6 +109,19 @@ public class MusicLibraryProviderImpl implements MusicLibraryProvider {
 	}
 	
 	static long convertUtcToUnix(String utcTimestamp) {
-		return 0L;
+		try {
+			String year = utcTimestamp.substring(0, 4);
+			String month = utcTimestamp.substring(5, 7);
+			String day = utcTimestamp.substring(8, 10);
+			String hour = utcTimestamp.substring(11, 13);
+			String minute = utcTimestamp.substring(14, 16);
+			String second = utcTimestamp.substring(17, 19);
+			return dfm.parse(year + month + day + hour + minute + second)
+					.getTime() / 1000;
+		} catch (ParseException e) {
+			e.printStackTrace();
+			System.exit(1);
+			return 0;
+		}
 	}
 }

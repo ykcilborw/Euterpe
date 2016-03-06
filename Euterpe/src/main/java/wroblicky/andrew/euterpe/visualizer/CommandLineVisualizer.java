@@ -11,9 +11,7 @@ import wroblicky.andrew.euterpe.Artist;
 import wroblicky.andrew.euterpe.ChartCategory;
 import wroblicky.andrew.euterpe.HistoricalChart;
 import wroblicky.andrew.euterpe.Play;
-import wroblicky.andrew.euterpe.PlayHistory;
 import wroblicky.andrew.euterpe.Song;
-import wroblicky.andrew.euterpe.SongPlayHistory;
 import wroblicky.andrew.euterpe.TimeInterval;
 import wroblicky.andrew.euterpe.TimeScope;
 import wroblicky.andrew.euterpe.dao.ArtistDAO;
@@ -125,7 +123,7 @@ public final class CommandLineVisualizer extends Visualizer {
 		for (Play play : plays) {
 			toReturn.append(play.getSong().getName());
 			toReturn.append(",");
-			toReturn.append(play.getArtist().getName());
+			toReturn.append(play.getSong().getArtist().getName());
 		    toReturn.append(",");
 			toReturn.append(play.getTimestamp());
 			toReturn.append("\n");

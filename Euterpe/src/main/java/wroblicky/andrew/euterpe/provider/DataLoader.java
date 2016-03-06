@@ -16,6 +16,7 @@ import com.google.common.collect.Sets;
 import wroblicky.andrew.euterpe.Artist;
 import wroblicky.andrew.euterpe.ChartCategory;
 import wroblicky.andrew.euterpe.ChartEntry;
+import wroblicky.andrew.euterpe.Play;
 import wroblicky.andrew.euterpe.Song;
 import wroblicky.andrew.euterpe.TimeInterval;
 import wroblicky.andrew.euterpe.TimeScope;
@@ -77,50 +78,48 @@ public class DataLoader {
 	}
 
 	private void insertNewSongs(MusicLibrary musicLibrary) {
-		Function<Song, SongIdentificationKey> function = new Function<Song, SongIdentificationKey>() {
+		Function<Song, String> function = new Function<Song, String>() {
 			@Override
-			public SongIdentificationKey apply(Song inputSong) {
-				return new SongIdentificationKey(inputSong.getArtist()
-						.getName(), inputSong.getName(),
-						inputSong.getDateAdded());
+			public String apply(Song inputSong) {
+				return inputSong.getPersistentID();
 			}
 		};
-		Set<SongIdentificationKey> existingSongs = Sets.newHashSet(Iterables
+		Set<String> existingSongs = Sets.newHashSet(Iterables
 				.transform(songDAO.getSongs(), function));
-		Set<SongIdentificationKey> importedSongs = musicLibrary.getSongLookup()
+		Set<String> importedSongs = musicLibrary.getSongLookup()
 				.keySet();
-		Set<SongIdentificationKey> newSongs = Sets.difference(existingSongs,
+		Set<String> newSongs = Sets.difference(existingSongs,
 				importedSongs);
-		for (SongIdentificationKey key : newSongs) {
+		for (String key : newSongs) {
 			InputSong inputSong = musicLibrary.getSongLookup().get(key);
 			Song song = SongMapper.from(inputSong,
-					artistDAO.getArtistByName(inputSong.getArtist()));
+					artistDAO.getArtist(inputSong.getArtist()));
 			songDAO.insertSong(song);
 		}
 	}
 
 	private void insertNewPlays(MusicLibrary musicLibrary) {
-		Map<SongIdentificationKey,InputSong> songLookup = musicLibrary.getSongLookup();
-		Map<SongIdentificationKey, Integer> importedSongsToPlays = musicLibrary
+		Map<String,InputSong> songLookup = musicLibrary.getSongLookup();
+		Map<String, Integer> importedSongsToPlays = musicLibrary
 				.getPlayCountLookup();
 		List<ChartEntry> chartEntries = historicalChartDAO.getHistoricalChart(
 				TimeInterval.ALL_TIME, TimeScope.ALL_TIME, ChartCategory.SONG)
 				.getResults();
-		Map<SongIdentificationKey, Integer> existingSongsToPlays = new HashMap<>();
+		Map<String, Integer> existingSongsToPlays = new HashMap<>();
 		for (ChartEntry chartEntry : chartEntries) {
 			Song song = songDAO.getSong(chartEntry.getID());
-			existingSongsToPlays.put(SongMapper.from(song),
+			existingSongsToPlays.put(song.getPersistentID(),
 					chartEntry.getNumPlays());
 		}
 
-		MapDifference<SongIdentificationKey, Integer> differenceMap = Maps
+		MapDifference<String, Integer> differenceMap = Maps
 				.difference(importedSongsToPlays, existingSongsToPlays);
-		Map<SongIdentificationKey, ValueDifference<Integer>> differingValuesMap = differenceMap.entriesDiffering();
-		for (SongIdentificationKey key : differingValuesMap.keySet()) {
+		Map<String, ValueDifference<Integer>> differingValuesMap = differenceMap.entriesDiffering();
+		for (String key : differingValuesMap.keySet()) {
 			ValueDifference<Integer> valueDifference = differingValuesMap.get(key);
 			int amountDifference = ((Integer) valueDifference.leftValue()) - ((Integer) valueDifference.rightValue());
 			while (amountDifference > 0) {
-				playDAO.insertPlay(songDAO.getSong(key).getID(), songLookup.get(key).getMostRecentPlayDate());
+				playDAO.insertPlay(new Play(songDAO.getSong(key), songLookup.get(key).getMostRecentPlayDate()));
 			}
 		}
 	}

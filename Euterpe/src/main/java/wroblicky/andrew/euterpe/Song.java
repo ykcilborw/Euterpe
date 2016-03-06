@@ -9,6 +9,7 @@ public class Song {
     private long dateAdded;
     private int numPlays;
     private long mostRecentPlayDate;
+    private String persistentID;
     
     public Song(String name, Artist artist, long dateAdded) {
     	this.name = name;
@@ -23,16 +24,17 @@ public class Song {
     	this.dateAdded = dateAdded;
     }
     
-    public Song(String name, Artist artist, String genre, long dateAdded, int numPlays, long mostRecentPlayDate) {
+    public Song(String name, Artist artist, String genre, long dateAdded, int numPlays, long mostRecentPlayDate, String persistentID) {
     	this.name = name;
     	this.artist = artist;
     	this.dateAdded = dateAdded;
     	this.numPlays = numPlays;
     	this.genre = genre;
     	this.mostRecentPlayDate = mostRecentPlayDate;
+    	this.persistentID = persistentID;
     }
     
-    public Song(int id, String name, Artist artist, String genre, long dateAdded, int numPlays, long mostRecentPlayDate) {
+    public Song(int id, String name, Artist artist, String genre, long dateAdded, int numPlays, long mostRecentPlayDate, String persistentID) {
     	this.id = id;
     	this.name = name;
     	this.artist = artist;
@@ -40,6 +42,7 @@ public class Song {
     	this.numPlays = numPlays;
     	this.genre = genre;
     	this.mostRecentPlayDate = mostRecentPlayDate;
+    	this.persistentID = persistentID;
     }
     
 	public int getID() {
@@ -84,6 +87,10 @@ public class Song {
 	
 	public long getMostRecentPlayDate() {
 		return mostRecentPlayDate;
+	}
+	
+	public String getPersistentID() {
+		return persistentID;
 	}
 
 }

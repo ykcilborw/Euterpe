@@ -9,14 +9,16 @@ public class InputSong {
     private long dateAdded;
     private int numPlays;
     private long mostRecentPlayDate;
+    private String persistentID;
     
-    public InputSong(String name, String artist, String genre, long dateAdded, int numPlays, long mostRecentPlayDate) {
+    public InputSong(String name, String artist, String genre, long dateAdded, int numPlays, long mostRecentPlayDate, String persistentID) {
     	this.name = name;
     	this.artist = artist;
     	this.dateAdded = dateAdded;
     	this.numPlays = numPlays;
     	this.genre = genre;
     	this.mostRecentPlayDate = mostRecentPlayDate;
+    	this.persistentID = persistentID;
     }
 	
 	public String getName() {
@@ -53,5 +55,9 @@ public class InputSong {
 	
 	public long getMostRecentPlayDate() {
 		return mostRecentPlayDate;
+	}
+	
+	public String getPersistentID() {
+		return persistentID;
 	}
 }

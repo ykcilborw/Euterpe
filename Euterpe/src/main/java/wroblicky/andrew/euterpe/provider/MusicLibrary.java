@@ -6,13 +6,13 @@ import java.util.Set;
 public class MusicLibrary {
 
 	private Set<String> artistNames;  // do new artists need to be inserted
-	private Map<SongIdentificationKey, InputSong> songLookup; // do new songs need to be inserted
-	private Map<SongIdentificationKey,Integer> playCountLookup; // do new song plays need to be added
+	private Map<String, InputSong> persistentIDToSong; // do new songs need to be inserted
+	private Map<String,Integer> persistentIDToPlayCount; // do new song plays need to be added
 	
-	public MusicLibrary(Set<String> artistNames,Map<SongIdentificationKey, InputSong> songLookup, Map<SongIdentificationKey,Integer> playCountLookup) {
+	public MusicLibrary(Set<String> artistNames,Map<String, InputSong> persistentIDToSong, Map<String,Integer> playCountLookup) {
 		this.artistNames = artistNames;
-		this.songLookup = songLookup;
-		this.playCountLookup = playCountLookup;
+		this.persistentIDToSong = persistentIDToSong;
+		this.persistentIDToPlayCount = playCountLookup;
 	}
 	
 	public Set<String> getArtistNames() {
@@ -20,12 +20,12 @@ public class MusicLibrary {
 	}
 
 
-	public Map<SongIdentificationKey, InputSong> getSongLookup() {
-		return songLookup;
+	public Map<String, InputSong> getSongLookup() {
+		return persistentIDToSong;
 	}
 
 
-	public Map<SongIdentificationKey, Integer> getPlayCountLookup() {
-		return playCountLookup;
+	public Map<String, Integer> getPlayCountLookup() {
+		return persistentIDToPlayCount;
 	}
 }

@@ -22,10 +22,9 @@ public class PlayDAOImpl implements PlayDAO {
 			stmt = connection.createStatement();
 			String sql = "CREATE TABLE plays "
 					+ "(ID INTEGER PRIMARY KEY AUTOINCREMENT,"
-					+ " SONG_ID INTEGER NOT NULL," + " ARTIST_ID INT NOT NULL,"
+					+ " SONG_ID INTEGER NOT NULL,"
 					+ " TIMESTAMP TIMESTAMP NOT NULL,"
-					+ " FOREIGN KEY(SONG_ID) REFERENCES SONGS(ID),"
-					+ " FOREIGN KEY(ARTIST_ID) REFERENCES ARTISTS(ID))";
+					+ " FOREIGN KEY(SONG_ID) REFERENCES SONGS(ID))";
 			stmt.executeUpdate(sql);
 			stmt.close();
 		} catch (Exception e) {
@@ -38,23 +37,21 @@ public class PlayDAOImpl implements PlayDAO {
 	
 	@Override
 	public void insertPlay(Play play) {
-	    Statement stmt = null;
-	    try (Connection connection = SqliteDAOFactory.createConnection()) {
+		Statement stmt = null;
+		try (Connection connection = SqliteDAOFactory.createConnection()) {
 
 			stmt = connection.createStatement();
-			String sql = "INSERT INTO PLAYS (SONG_ID,ARTIST_ID,TIMESTAMP) "
-					+ "VALUES (" + play.getSong().getID() + ","
-					+ play.getArtist().getID() + "," + play.getTimestamp()
-					+ ");";
+			String sql = "INSERT INTO PLAYS (SONG_ID,TIMESTAMP) " + "VALUES ("
+					+ play.getSong().getID() + "," + play.getTimestamp() + ");";
 			stmt.executeUpdate(sql);
 
-	      stmt.close();
-	      connection.commit();
-	    } catch ( Exception e ) {
-	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-	      System.exit(0);
-	    }
-	    System.out.println("Play record created successfully");
+			stmt.close();
+			connection.commit();
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.exit(0);
+		}
+		System.out.println("Play record created successfully");
 	}
 
 	@Override
@@ -74,7 +71,7 @@ public class PlayDAOImpl implements PlayDAO {
 	         Artist artist = new Artist(artistId, artistName);
 	         Long dateAdded = rs.getLong("date_added");
 	         Song song = new Song(id, songName, artist, dateAdded);
-	         plays.add(new Play(song, artist, rs.getLong("plays.timestamp")));
+	         plays.add(new Play(song, rs.getLong("plays.timestamp")));
 	      }
 	      rs.close();
 	      stmt.close();
@@ -82,8 +79,20 @@ public class PlayDAOImpl implements PlayDAO {
 	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 	      System.exit(0);
 	    }
-	    System.out.println("Operation done successfully");
+	    System.out.println("Plays retrieved  successfully");
 	    return plays;
+	}
+	
+	@Override
+	public Set<Play> getPlays(Artist artist) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Set<Play> getPlays(Song song) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
@@ -100,23 +109,5 @@ public class PlayDAOImpl implements PlayDAO {
 			System.exit(0);
 		}
 		System.out.println("Play table dropped successfully");
-	}
-
-	@Override
-	public Set<Play> getPlays(Artist artist) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Set<Play> getPlays(Song song) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void insertPlay(int songId, long timestamp) {
-		// TODO Auto-generated method stub
-		
 	}
 }
