@@ -1,0 +1,14 @@
+package wroblicky.andrew.euterpe.mapper;
+
+import wroblicky.andrew.euterpe.Artist;
+import wroblicky.andrew.euterpe.Song;
+import wroblicky.andrew.euterpe.provider.InputSong;
+
+public class SongMapper {
+	
+	public static Song from(InputSong inputSong, Artist artist) {
+		return new Song(inputSong.getName(), artist, inputSong.getGenre(),
+				inputSong.getDateAdded(), inputSong.getNumPlays(),
+				inputSong.getMostRecentPlayDate());
+	}
+}
