@@ -3,7 +3,7 @@ package wroblicky.andrew.euterpe.songs;
 import java.util.Set;
 
 import wroblicky.andrew.euterpe.artists.Artist;
-import wroblicky.andrew.euterpe.provider.SongIdentificationKey;
+import wroblicky.andrew.euterpe.parser.SongIdentificationKey;
 
 public interface SongDAO {
 	

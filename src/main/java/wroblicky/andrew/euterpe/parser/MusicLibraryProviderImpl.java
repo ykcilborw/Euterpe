@@ -1,4 +1,4 @@
-package wroblicky.andrew.euterpe.provider;
+package wroblicky.andrew.euterpe.parser;
 
 import java.io.File;
 import java.io.IOException;

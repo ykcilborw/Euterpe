@@ -10,7 +10,7 @@ import wroblicky.andrew.euterpe.plays.Play;
 import wroblicky.andrew.euterpe.plays.PlayDAO;
 import wroblicky.andrew.euterpe.songs.Song;
 import wroblicky.andrew.euterpe.songs.SongDAO;
-import wroblicky.andrew.euterpe.provider.DataLoader;
+import wroblicky.andrew.euterpe.parser.DataLoader;
 
 public class SqlTestManager {
 	

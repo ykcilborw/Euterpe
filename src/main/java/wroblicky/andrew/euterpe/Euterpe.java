@@ -7,9 +7,9 @@ import java.util.Properties;
 
 import wroblicky.andrew.euterpe.dao.DAOFactory;
 import wroblicky.andrew.euterpe.dao.SqliteDAOFactory;
-import wroblicky.andrew.euterpe.provider.DataLoader;
-import wroblicky.andrew.euterpe.provider.MusicLibraryProvider;
-import wroblicky.andrew.euterpe.provider.MusicLibraryProviderImpl;
+import wroblicky.andrew.euterpe.parser.DataLoader;
+import wroblicky.andrew.euterpe.parser.MusicLibraryProvider;
+import wroblicky.andrew.euterpe.parser.MusicLibraryProviderImpl;
 import wroblicky.andrew.euterpe.visualizer.CommandLineVisualizer;
 import wroblicky.andrew.euterpe.visualizer.Visualizer;
 
