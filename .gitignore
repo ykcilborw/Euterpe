@@ -8,6 +8,8 @@ tmp/
 *.tmp
 *.bak
 *.swp
+*.idea
+*.iml
 local.properties
 .settings/
 .project
