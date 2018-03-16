@@ -7,18 +7,18 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
-import wroblicky.andrew.euterpe.Artist;
-import wroblicky.andrew.euterpe.ChartCategory;
-import wroblicky.andrew.euterpe.HistoricalChart;
-import wroblicky.andrew.euterpe.Play;
-import wroblicky.andrew.euterpe.Song;
-import wroblicky.andrew.euterpe.TimeInterval;
-import wroblicky.andrew.euterpe.TimeScope;
-import wroblicky.andrew.euterpe.dao.ArtistDAO;
+import wroblicky.andrew.euterpe.artists.Artist;
+import wroblicky.andrew.euterpe.charts.ChartCategory;
+import wroblicky.andrew.euterpe.charts.HistoricalChart;
+import wroblicky.andrew.euterpe.plays.Play;
+import wroblicky.andrew.euterpe.songs.Song;
+import wroblicky.andrew.euterpe.charts.TimeInterval;
+import wroblicky.andrew.euterpe.charts.TimeScope;
+import wroblicky.andrew.euterpe.artists.ArtistDAO;
 import wroblicky.andrew.euterpe.dao.DAOFactory;
-import wroblicky.andrew.euterpe.dao.HistoricalChartDAO;
-import wroblicky.andrew.euterpe.dao.PlayDAO;
-import wroblicky.andrew.euterpe.dao.SongDAO;
+import wroblicky.andrew.euterpe.charts.HistoricalChartDAO;
+import wroblicky.andrew.euterpe.plays.PlayDAO;
+import wroblicky.andrew.euterpe.songs.SongDAO;
 
 public final class CommandLineVisualizer extends Visualizer {
 	

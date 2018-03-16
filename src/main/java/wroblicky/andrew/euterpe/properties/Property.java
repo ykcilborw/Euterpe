@@ -1,4 +1,4 @@
-package wroblicky.andrew.euterpe;
+package wroblicky.andrew.euterpe.properties;
 
 public class Property {
 	

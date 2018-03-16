@@ -1,5 +1,10 @@
 package wroblicky.andrew.euterpe.dao;
 
+import wroblicky.andrew.euterpe.artists.ArtistDAO;
+import wroblicky.andrew.euterpe.charts.HistoricalChartDAO;
+import wroblicky.andrew.euterpe.plays.PlayDAO;
+import wroblicky.andrew.euterpe.songs.SongDAO;
+
 public abstract class DAOFactory {
 
 	public abstract ArtistDAO getArtistDAO();

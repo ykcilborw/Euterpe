@@ -1,4 +1,6 @@
-package wroblicky.andrew.euterpe;
+package wroblicky.andrew.euterpe.plays;
+
+import wroblicky.andrew.euterpe.songs.Song;
 
 public final class Play {
 	

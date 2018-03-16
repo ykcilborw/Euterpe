@@ -1,9 +1,8 @@
-package wroblicky.andrew.euterpe.dao;
+package wroblicky.andrew.euterpe.songs;
 
 import java.util.Set;
 
-import wroblicky.andrew.euterpe.Artist;
-import wroblicky.andrew.euterpe.Song;
+import wroblicky.andrew.euterpe.artists.Artist;
 import wroblicky.andrew.euterpe.provider.SongIdentificationKey;
 
 public interface SongDAO {

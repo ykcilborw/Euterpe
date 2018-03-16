@@ -4,6 +4,15 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import wroblicky.andrew.euterpe.artists.ArtistDAO;
+import wroblicky.andrew.euterpe.artists.ArtistDAOImpl;
+import wroblicky.andrew.euterpe.charts.HistoricalChartDAO;
+import wroblicky.andrew.euterpe.charts.HistoricalChartDAOImpl;
+import wroblicky.andrew.euterpe.plays.PlayDAO;
+import wroblicky.andrew.euterpe.plays.PlayDAOImpl;
+import wroblicky.andrew.euterpe.songs.SongDAO;
+import wroblicky.andrew.euterpe.songs.SongDAOImpl;
+
 public class SqliteDAOFactory extends DAOFactory {
 	
 	public static final String DRIVER= "org.sqlite.JDBC";

@@ -3,10 +3,13 @@ package wroblicky.andrew.euterpe;
 import java.util.ArrayList;
 import java.util.List;
 
-import wroblicky.andrew.euterpe.dao.ArtistDAO;
+import wroblicky.andrew.euterpe.artists.Artist;
+import wroblicky.andrew.euterpe.artists.ArtistDAO;
 import wroblicky.andrew.euterpe.dao.DAOFactory;
-import wroblicky.andrew.euterpe.dao.PlayDAO;
-import wroblicky.andrew.euterpe.dao.SongDAO;
+import wroblicky.andrew.euterpe.plays.Play;
+import wroblicky.andrew.euterpe.plays.PlayDAO;
+import wroblicky.andrew.euterpe.songs.Song;
+import wroblicky.andrew.euterpe.songs.SongDAO;
 import wroblicky.andrew.euterpe.provider.DataLoader;
 
 public class SqlTestManager {

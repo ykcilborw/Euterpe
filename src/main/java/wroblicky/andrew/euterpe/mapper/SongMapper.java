@@ -1,9 +1,8 @@
 package wroblicky.andrew.euterpe.mapper;
 
-import wroblicky.andrew.euterpe.Artist;
-import wroblicky.andrew.euterpe.Song;
+import wroblicky.andrew.euterpe.artists.Artist;
+import wroblicky.andrew.euterpe.songs.Song;
 import wroblicky.andrew.euterpe.provider.InputSong;
-import wroblicky.andrew.euterpe.provider.SongIdentificationKey;
 
 public class SongMapper {
 	

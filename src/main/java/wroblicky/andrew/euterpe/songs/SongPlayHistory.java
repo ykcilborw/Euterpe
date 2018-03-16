@@ -1,4 +1,6 @@
-package wroblicky.andrew.euterpe;
+package wroblicky.andrew.euterpe.songs;
+
+import wroblicky.andrew.euterpe.plays.PlayHistory;
 
 public final class SongPlayHistory extends PlayHistory {
 	

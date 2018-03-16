@@ -1,11 +1,10 @@
-package wroblicky.andrew.euterpe.dao;
+package wroblicky.andrew.euterpe.plays;
 
 import java.util.List;
 import java.util.Set;
 
-import wroblicky.andrew.euterpe.Artist;
-import wroblicky.andrew.euterpe.Play;
-import wroblicky.andrew.euterpe.Song;
+import wroblicky.andrew.euterpe.artists.Artist;
+import wroblicky.andrew.euterpe.songs.Song;
 
 public interface PlayDAO {
 	

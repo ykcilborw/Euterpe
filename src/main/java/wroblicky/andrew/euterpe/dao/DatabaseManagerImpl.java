@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 
-import wroblicky.andrew.euterpe.PlayHistory;
+import wroblicky.andrew.euterpe.plays.PlayHistory;
 
 public class DatabaseManagerImpl implements DatabaseManager {
 	

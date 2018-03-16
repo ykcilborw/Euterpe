@@ -1,9 +1,4 @@
-package wroblicky.andrew.euterpe.dao;
-
-import wroblicky.andrew.euterpe.ChartCategory;
-import wroblicky.andrew.euterpe.HistoricalChart;
-import wroblicky.andrew.euterpe.TimeInterval;
-import wroblicky.andrew.euterpe.TimeScope;
+package wroblicky.andrew.euterpe.charts;
 
 public class HistoricalChartDAOImpl implements HistoricalChartDAO {
 

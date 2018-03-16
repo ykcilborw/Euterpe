@@ -1,4 +1,4 @@
-package wroblicky.andrew.euterpe.dao;
+package wroblicky.andrew.euterpe.artists;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
 
-import wroblicky.andrew.euterpe.Artist;
+import wroblicky.andrew.euterpe.dao.SqliteDAOFactory;
 
 public class ArtistDAOImpl implements ArtistDAO {
 	

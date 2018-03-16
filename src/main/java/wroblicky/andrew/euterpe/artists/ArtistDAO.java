@@ -1,8 +1,6 @@
-package wroblicky.andrew.euterpe.dao;
+package wroblicky.andrew.euterpe.artists;
 
 import java.util.Set;
-
-import wroblicky.andrew.euterpe.Artist;
 
 public interface ArtistDAO {
 	

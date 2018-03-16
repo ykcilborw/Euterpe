@@ -1,4 +1,4 @@
-package wroblicky.andrew.euterpe.dao;
+package wroblicky.andrew.euterpe.songs;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -6,8 +6,8 @@ import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
 
-import wroblicky.andrew.euterpe.Artist;
-import wroblicky.andrew.euterpe.Song;
+import wroblicky.andrew.euterpe.artists.Artist;
+import wroblicky.andrew.euterpe.dao.SqliteDAOFactory;
 import wroblicky.andrew.euterpe.provider.SongIdentificationKey;
 
 public class SongDAOImpl implements SongDAO {

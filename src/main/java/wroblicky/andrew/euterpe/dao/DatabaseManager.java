@@ -1,6 +1,6 @@
 package wroblicky.andrew.euterpe.dao;
 
-import wroblicky.andrew.euterpe.PlayHistory;
+import wroblicky.andrew.euterpe.plays.PlayHistory;
 
 public interface DatabaseManager {
 

@@ -1,8 +1,8 @@
-package wroblicky.andrew.euterpe.dao;
+package wroblicky.andrew.euterpe.properties;
 
 import java.util.List;
 
-import wroblicky.andrew.euterpe.Property;
+import wroblicky.andrew.euterpe.properties.Property;
 
 public interface PropertyDAO {
 	
